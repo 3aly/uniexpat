@@ -4,22 +4,28 @@ export default function Home() {
   return (
     <div
       id="home"
-      className="h-screen flex flex-col items-center justify-center bg-cover bg-no-repeat bg-center"
-      style={{ backgroundImage: `url(${IMAGES.home})` }}
+      style={{
+        backgroundImage: `url(${IMAGES.home})`,
+      }}
+      className="flex flex-col h-screen bg-no-repeat bg-cover justify-center"
     >
-      <div className="bg-green-300 w-3/4 self-start gap-3">
-        <h1 className="text-green-100 text-6xl	 font-bold">
-          La Universidad en España te espera, hagámoslo juntos!
-        </h1>
-        <div className="text-green-100 	 text-2xl	font-normal	">
+      <div className="flex flex-col  bg-red-200 w-1/2 self-start ms-12 mb-2">
+        <div className="text-purple-200  text-6xl	 font-normal my-8">
+          La Universidad en España te espera,
+          <span className="text-purple-200  text-6xl	 font-bold">
+            hagámoslo juntos!
+          </span>
+        </div>
+
+        <div className=" text-black-100	 text-2xl	font-normal	">
           Nuestro equipo y nuestra tecnología serán el aliado perfecto para que
           puedas cumplir tu sueño de estudiar en España.
         </div>
-        <div className="flex bg-red-300">
-          <button className="flex-1 bg-purple-200 text-white py-2 px-4 m-2">
+        <div className="flex  py-2">
+          <button className="flex-1 bg-purple-200 text-white py-2 px-4 me-2">
             Necesitas nuestra ayuda!',
           </button>
-          <button className="flex-1 bg-transparent border border-purple-200 text-purple-600 py-2 px-4 m-2">
+          <button className="flex-1 bg-transparent border border-purple-200 text-purple-600 py-2 px-4 ms-2">
             Explora más programas',
           </button>
         </div>

@@ -1,18 +1,40 @@
-import React from "react";
-import { Home, NavBar } from "./pages";
+import React, { useEffect, useState } from "react";
+import { Home, Services } from "./pages";
+import LayoutWithNavbar from "./layout";
+import { NavBar } from "@components/organisms";
 
 function App() {
-  return (
-    <div className="static">
-      <NavBar />
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      if (position > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  console.log("itsScrolled", isScrolled);
+  return (
+    <div>
+      {/* <LayoutWithNavbar> */}
+      <NavBar
+        className={` ${
+          isScrolled ? "bg-white" : "bg-red-100"
+        } transition-all duration-300 ease-in-out text-gray-800 absolute  w-full z-20`}
+      />
       <Home />
-      <section
-        id="services"
-        className="h-screen bg-red-500 flex items-center justify-center text-white"
-      >
-        <h2>Services Section</h2>
-      </section>
+      <Services />
       <section
         id="about"
         className="h-screen bg-green-500 flex items-center justify-center text-white"
@@ -25,6 +47,7 @@ function App() {
       >
         <h2>Contact Section</h2>
       </section>
+      {/* </LayoutWithNavbar> */}
     </div>
   );
 }

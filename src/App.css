@@ -27,6 +27,15 @@
 .App-link {
   color: #61dafb;
 }
+.container {
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url("https://s3-alpha-sig.figma.com/img/154e/382f/b7e8be84d7248b8b9812172cad1cd0c9?Expires=1702252800&Signature=ZhAr1Ao2t7rkA11kvHhmN34mIAeOUuKheNynTEm4pUukzpUMBXw~5Jm~et0M4K282Ei56AMKyJytZNBBCvQITdqYDx99yCO2s9~S6U3RLgsTrJnIGefgWDuWkK871Bn2OMfeHs1pEZkdSe0fHWq-ECy~YzRYE-2fRa7ywWWYnPE4L2iayGcu0xotsS2fNwY13vzhTHHtMH33OvHcXtvOnbaT3WM6Hi8LzNGZTRSLs0nbsTFVQ~Ki57QjJr2sd~9bTFp1UllQhnnJ0O-O24TanXQzsu9yjGWk~CGA1vphwtbn0Yu~eJyPcyFypPkHZ5y6DZvruPFY-9xOtk~iNyq4Gw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4")
+      lightgray 50% / cover no-repeat;
+}
 
 @keyframes App-logo-spin {
   from {
