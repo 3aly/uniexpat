@@ -7,9 +7,9 @@ export default function Home() {
       style={{
         backgroundImage: `url(${IMAGES.home})`,
       }}
-      className="flex flex-col h-screen bg-no-repeat bg-cover justify-center"
+      className="flex flex-col  bg-no-repeat bg-cover h-screen"
     >
-      <div className="flex flex-col  bg-red-200 w-1/2 self-start ms-12 mb-2">
+      <div className="flex flex-col    self-start">
         <div className="text-purple-200  text-6xl	 font-normal my-8">
           La Universidad en España te espera,
           <span className="text-purple-200  text-6xl	 font-bold">

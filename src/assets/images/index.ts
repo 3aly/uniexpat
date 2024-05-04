@@ -5,4 +5,6 @@ export const IMAGES = {
   academic: require("./academic.png"),
   community: require("./community.png"),
   information: require("./information.png"),
+  ai: require("./ai.png"),
+  planner: require("./planner.png"),
 };

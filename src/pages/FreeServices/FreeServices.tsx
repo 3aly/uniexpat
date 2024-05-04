@@ -1,11 +1,11 @@
 import { IMAGES } from "@assets/images";
 import SmallLogo from "@assets/smallLogo";
 import { ContentContainer, Tabs } from "@components/molecules";
-import { getServices } from "@utils/getServices";
+import { getFreeServices } from "@utils/getFreeServices";
 import { useState } from "react";
 
-export default function Services() {
-  const content = getServices();
+export default function FreeServices() {
+  const content = getFreeServices();
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -18,7 +18,12 @@ export default function Services() {
       </div>
       <Tabs
         {...{ activeTab, setActiveTab }}
-        tabNames={["Asesoría Personaizada", "Planeador personalizado"]}
+        tabNames={[
+          "Información Académica",
+          "Información Legal",
+          "Acceso Comunidad",
+          "Contenido Gratuito",
+        ]}
       />
       <div className=" my-5  p-8 rounded-2xl shadow-2xl  flex flex-col w-4/6 items-center justify-center ">
         <ContentContainer {...{ ...content[activeTab] }} />

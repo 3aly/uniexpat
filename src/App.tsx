@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Home, Services } from "./pages";
+import { FreeServices, Home, Services } from "./pages";
 import LayoutWithNavbar from "./layout";
 import { NavBar } from "@components/organisms";
 
@@ -34,13 +34,8 @@ function App() {
         } transition-all duration-300 ease-in-out text-gray-800 absolute  w-full z-20`}
       />
       <Home />
+      <FreeServices />
       <Services />
-      <section
-        id="about"
-        className="h-screen bg-green-500 flex items-center justify-center text-white"
-      >
-        <h2>About Section</h2>
-      </section>
       <section
         id="contact"
         className="h-screen bg-purple-500 flex items-center justify-center text-white"

@@ -3,6 +3,7 @@ import React from "react";
 const SmallLogo = () => {
   return (
     <svg
+      xlinkRole="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 121 137"
       width="121"

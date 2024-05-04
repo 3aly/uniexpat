@@ -1,6 +1,6 @@
 const Tabs = ({ tabNames, activeTab, setActiveTab }) => {
   return (
-    <div className=" rounded-xl	px-8 py-4 bg-grey-100 shadow-xl">
+    <div className=" rounded-xl	my-5 px-6 py-3 bg-grey-100 shadow-xl">
       <div className="flex text-slate-900	">
         {tabNames.map((tabName, index) => (
           <button

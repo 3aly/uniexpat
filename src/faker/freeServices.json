@@ -1,0 +1,16 @@
+[
+    {
+      "image": `${IMAGES.academic}`,
+      "title": "Información Académica",
+      "paragraph":
+        "Descubre todo lo que necesitas saber sobre programas académicos, universidades en España y toma la mejor decisión para tu futuro académico",
+      "button": "Explora más programas",
+      "checkboxData": [
+        "Encuentra todas las universidades de España y más de 10,000 programas académicos",
+        "Precios y duración del programa.",
+        "Proceso de admisiones.",
+        "Acceso a becas.",
+      ],
+      "swiped": false,
+    },
+  ]

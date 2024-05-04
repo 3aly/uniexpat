@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.16",
@@ -16,6 +17,7 @@
     "@types/react-dom": "^18.3.0",
     "craco": "^0.0.3",
     "customize-cra": "^1.0.0",
+    "framer-motion": "^11.1.7",
     "react": "^18.3.1",
     "react-app-rewired": "^2.2.1",
     "react-dom": "^18.3.1",
