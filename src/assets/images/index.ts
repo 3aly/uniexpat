@@ -7,4 +7,7 @@ export const IMAGES = {
   information: require("./information.png"),
   ai: require("./ai.png"),
   planner: require("./planner.png"),
+  money: require("./money.png"),
+  time: require("./time.png"),
+  success: require("./success.png"),
 };

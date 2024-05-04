@@ -9,10 +9,7 @@ export default function Services() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div
-      id="services"
-      className="h-screen bg-blue-200 flex items-center justify-center  flex-col"
-    >
+    <div className="h-screen  my-12 flex items-center justify-center  flex-col">
       <div className="text-purple-200  text-5xl		w-5/6 font-normal text-center ">
         ¡Descubre cómo podemos ayudarte en esta emocionante etapa de tu vida!'
       </div>

@@ -13,7 +13,7 @@ export const getServices = () => {
         "Segunda reunión para presentarte un plan de acción personalizado!",
         "Tercera llamada hacer seguimiento a los pasos que has planeado y resolver cualquier duda.",
       ],
-      price: { label: "Precio de asesoría de M.AI.A:", number: "4,99€" },
+      price: { label: "Precio de asesoría personalizada:", number: "49,99€" },
 
       swiped: false,
     },

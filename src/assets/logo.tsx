@@ -5,9 +5,9 @@ const Logo = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       // xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 276 89.23763112966935"
-      width="276"
-      height="89.23763112966935"
+      viewBox="0 0 276 90"
+      width="260"
+      height="80"
       fill="none"
     >
       <g opacity="100%" filter="url(#filter_dshadow_0_0_0_00000014)">
@@ -15,7 +15,7 @@ const Logo = () => {
           x="0"
           y="0"
           width="276"
-          height="89.23763112966935"
+          height="90"
           rx="8"
           fill="url(#image-pattern-ca087075-6bf9-4f2d-92b2-03d71e4a763d)"
         ></rect>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { FreeServices, Home, Services } from "./pages";
-import LayoutWithNavbar from "./layout";
-import { NavBar } from "@components/organisms";
+import { AboutOne, FreeServices, Home, Services } from "./pages";
+import { Footer, NavBar } from "@components/organisms";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,7 +8,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
-      if (position > 0) {
+      if (position > 100) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -26,23 +25,24 @@ function App() {
   }, []);
   console.log("itsScrolled", isScrolled);
   return (
-    <div>
+    <div className="flex flex-col ">
       {/* <LayoutWithNavbar> */}
       <NavBar
-        className={` ${
-          isScrolled ? "bg-white" : "bg-red-100"
-        } transition-all duration-300 ease-in-out text-gray-800 absolute  w-full z-20`}
+        className={`${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
       />
       <Home />
-      <FreeServices />
-      <Services />
-      <section
-        id="contact"
-        className="h-screen bg-purple-500 flex items-center justify-center text-white"
-      >
+      <section className="flex flex-col" id="services">
+        <FreeServices />
+        <Services />
+      </section>
+      <section className="flex flex-col" id="about">
+        <AboutOne />
+      </section>
+      <section className="h-screen bg-purple-500 flex items-center justify-center text-white">
         <h2>Contact Section</h2>
       </section>
       {/* </LayoutWithNavbar> */}
+      <Footer />
     </div>
   );
 }

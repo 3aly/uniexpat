@@ -30,12 +30,12 @@ const ContentContainer = ({
         <img src={image} alt="Image" className="rounded-3xl " />
       </div>
       {/* Second Section: Text and Checkbox */}
-      <div className={`flex flex-col  justify-between w-3/4 `}>
+      <div className={`flex flex-col  justify-between w-2/4 `}>
         <div className={`flex flex-col justify-between   h-5/6`}>
-          <h3 className={"text-3xl	font-bold	"}>{title}</h3>
-          <p className={`text-grey-200 text-base`}>{paragraph}</p>
+          <h3 className={"text-3xl mb-2	font-bold	"}>{title}</h3>
+          <p className={`text-grey-200  text-base`}>{paragraph}</p>
           {checkboxData?.map((item, index) => (
-            <div key={index} className="flex items-start flex-row ">
+            <div key={index} className="flex my-2 items-start flex-row ">
               <div>
                 <CheckboxIcon />
               </div>
@@ -43,19 +43,19 @@ const ContentContainer = ({
             </div>
           ))}
           {price && (
-            <div className="flex flex-row gx-2">
+            <div className="flex flex-row my-2 ">
               <p className="text-grey-200 text-base">{price.label}</p>
-              <p className="text-grey-200 text-base ms-1 line-through text-green-100">
+              <p className="  text-base ms-1 line-through  text-green-100">
                 {price.number}
               </p>
-              <p>Free</p>
+              <p className="ms-2 ">Free</p>
             </div>
           )}
         </div>
 
         <button
           // onClick={}
-          className="bg-purple-200 py-2 text-white  rounded-full"
+          className="bg-purple-200 py-2 mt-3 text-white  rounded-full"
         >
           {button}
         </button>
