@@ -10,13 +10,13 @@ export default function Home() {
       style={{
         backgroundImage: `url(${IMAGES.home})`,
       }}
-      className={`flex  flex-col bg-no-repeat bg-cover  ${
+      className={` flex  flex-col bg-no-repeat bg-cover  ${
         isMobile ? "px-3" : "h-screen justify-center"
       }`}
     >
       <div
-        className={` w-full self-start ${
-          isMobile ? "mt-12  w-full" : " mx-8 mb-12 w-2/3"
+        className={`  self-start ${
+          isMobile ? "mt-12  w-full" : "p-5 mb-12 w-2/3"
         }`}
       >
         <div
