@@ -1,14 +1,14 @@
 import { IMAGES } from "@assets/images";
 import SmallLogo from "@assets/smallLogo";
 import { ContentContainer, Tabs } from "@components/molecules";
-import { useMobile } from "@hooks/index";
+import { useResize } from "@hooks/useResize";
 import { getServices } from "@utils/getServices";
 import { useState } from "react";
 
 export default function Services() {
   const content = getServices();
   const [activeTab, setActiveTab] = useState(0);
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   return (
     <div

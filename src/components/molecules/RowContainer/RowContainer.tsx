@@ -1,11 +1,10 @@
-import { useMobile } from "@hooks/index";
-
+import { useResize } from "@hooks/useResize";
 const RowContainer = ({
   content,
 }: {
   content: Array<{ image: string; title: string }>;
 }) => {
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   return (
     <div

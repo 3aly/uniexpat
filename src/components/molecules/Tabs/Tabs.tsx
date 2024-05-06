@@ -1,7 +1,6 @@
-import { useMobile } from "@hooks/index";
-
+import { useResize } from "@hooks/useResize";
 const Tabs = ({ tabNames, activeTab, setActiveTab }) => {
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   return (
     <div className=" rounded-xl	my-5 px-6 py-3 bg-grey-100 shadow-xl">

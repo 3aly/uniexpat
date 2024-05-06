@@ -1,8 +1,7 @@
 import { IMAGES } from "@assets/images";
-import { useMobile } from "@hooks/index";
-
+import { useResize } from "@hooks/useResize";
 export default function Home() {
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   return (
     <div

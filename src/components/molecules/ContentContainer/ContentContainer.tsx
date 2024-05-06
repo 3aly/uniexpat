@@ -1,6 +1,6 @@
 import CheckboxIcon from "@assets/checkboxIcon";
 import SmallLogo from "@assets/smallLogo";
-import { useMobile } from "@hooks/index";
+import { useResize } from "@hooks/useResize";
 
 const ContentContainer = ({
   image,
@@ -20,7 +20,7 @@ const ContentContainer = ({
   price?: { label: string; number: string };
   // onclick: () => void;
 }) => {
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   return (
     <div

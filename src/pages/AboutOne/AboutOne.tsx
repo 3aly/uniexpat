@@ -1,7 +1,7 @@
 import { IMAGES } from "@assets/images";
 import SmallLogo from "@assets/smallLogo";
 import { ContentContainer, RowContainer, Tabs } from "@components/molecules";
-import { useMobile } from "@hooks/index";
+import { useResize } from "@hooks/useResize";
 import { getAboutUs } from "@utils/getAboutUs";
 import { getFreeServices } from "@utils/getFreeServices";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function AboutOne() {
   const content = getAboutUs();
   const [activeTab, setActiveTab] = useState(0);
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   return (
     <div

@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { AboutOne, FreeServices, Home, Services } from "./pages";
+import {
+  AboutOne,
+  AboutTwo,
+  BlogsBrief,
+  ContactUs,
+  FreeServices,
+  Home,
+  Services,
+} from "./pages";
 import { Footer, NavBar } from "@components/organisms";
 
 function App() {
@@ -36,10 +44,12 @@ function App() {
       </section>
       <section className="flex flex-col" id="about">
         <AboutOne />
+        <AboutTwo />
       </section>
-      <section className="h-screen bg-purple-500 flex items-center justify-center text-white">
-        <h2>Contact Section</h2>
-      </section>
+      <BlogsBrief />
+      {/* <section className="h-screen bg-purple-500 flex items-center justify-center text-white"> */}
+      <ContactUs />
+      {/* </section> */}
       <Footer />
     </div>
   );

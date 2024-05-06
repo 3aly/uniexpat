@@ -3,11 +3,11 @@ import Logo from "@assets/logo";
 import { Link } from "react-scroll";
 // import { MenuIcon, XIcon } from "@heroicons/react/outline"; // Make sure to install heroicons or use any other icon set
 import { Close, Menu } from "@mui/icons-material";
-import { useMobile } from "@hooks/index";
+import { useResize } from "@hooks/useResize";
 import SmallLogo from "@assets/smallLogo";
 
 const Navbar = ({ className = "" }) => {
-  const isMobile = useMobile();
+  const { isMobile } = useResize();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -22,7 +22,7 @@ const Navbar = ({ className = "" }) => {
     <div
       className={`text-purple-100 py-1 text-sm font-semibold w-full fixed top-0 z-50 ${className}`}
     >
-      <div className="max-w-6xl mx-auto px-4 w-full">
+      <div className="max-w-7xl  px-4 ">
         <div className="flex justify-between items-center">
           {isMobile ? <SmallLogo /> : <Logo />}
           <div className="md:hidden ">
