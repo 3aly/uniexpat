@@ -1,6 +1,7 @@
 import { IMAGES } from "@assets/images";
 import SmallLogo from "@assets/smallLogo";
 import { ContentContainer, RowContainer, Tabs } from "@components/molecules";
+import { useMobile } from "@hooks/index";
 import { getAboutUs } from "@utils/getAboutUs";
 import { getFreeServices } from "@utils/getFreeServices";
 import { useState } from "react";
@@ -8,10 +9,19 @@ import { useState } from "react";
 export default function AboutOne() {
   const content = getAboutUs();
   const [activeTab, setActiveTab] = useState(0);
+  const isMobile = useMobile();
 
   return (
-    <div className="h-screen  flex items-center my-12 tex-center justify-center  flex-col">
-      <div className="text-purple-200  text-4xl		 font-bold	mx-3 mb-12 text-center ">
+    <div
+      className={`flex  items-center tex-center justify-center  flex-col ${
+        isMobile ? "" : " h-screen  my-12 "
+      } `}
+    >
+      <div
+        className={`text-purple-200  	 font-bold	 text-center ${
+          isMobile ? "text-md mx-1 mb-2" : " mx-3 mb-12 text-4xl	"
+        }`}
+      >
         Entendemos lo desafiante que puede ser este proceso! Por eso, hemos
         creado una web llena de geniales beneficios para ti
       </div>

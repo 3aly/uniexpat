@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import Logo from "@assets/logo";
 import { Link } from "react-scroll";
 // import { MenuIcon, XIcon } from "@heroicons/react/outline"; // Make sure to install heroicons or use any other icon set
-import { Menu } from "@mui/icons-material";
+import { Close, Menu } from "@mui/icons-material";
+import { useMobile } from "@hooks/index";
+import SmallLogo from "@assets/smallLogo";
 
 const Navbar = ({ className = "" }) => {
+  const isMobile = useMobile();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const links = [
     { to: "home", label: "Home", mx: "mx-2 md:mx-5" },
     { to: "services", label: "Services", mx: "mx-2 md:mx-5" },
@@ -19,11 +24,11 @@ const Navbar = ({ className = "" }) => {
     >
       <div className="max-w-6xl mx-auto px-4 w-full">
         <div className="flex justify-between items-center">
-          <Logo />
-          <div className="md:hidden">
+          {isMobile ? <SmallLogo /> : <Logo />}
+          <div className="md:hidden ">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? (
-                <Menu className="h-6 w-6" />
+                <Close className="h-2 w-2" />
               ) : (
                 <Menu className="h-6 w-6" />
               )}
@@ -38,7 +43,7 @@ const Navbar = ({ className = "" }) => {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`${link.mx} hover:text-purple-300 cursor-pointer transition duration-300`}
+                className={`${link.mx}  hover:text-purple-300 cursor-pointer transition duration-300`}
                 smooth={true}
                 duration={500}
                 activeClass="border-b-2 border-purple-100"

@@ -6,8 +6,8 @@ const SmallLogo = () => {
       xlinkRole="http://www.w3.org/1999/xlink"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 121 137"
-      width="121"
-      height="137"
+      width="60"
+      height="60"
       fill="none"
     >
       <g opacity="100%" filter="url(#filter_dshadow_0_0_0_00000014)">

@@ -1,14 +1,36 @@
+import { useMobile } from "@hooks/index";
+
 const RowContainer = ({
   content,
 }: {
   content: Array<{ image: string; title: string }>;
 }) => {
+  const isMobile = useMobile();
+
   return (
-    <div className="flex flex-row m-8 justify-between">
+    <div
+      className={`flex ${
+        isMobile ? "flex-col m-2 g-y-5" : " flex-row m-8 justify-between"
+      }`}
+    >
       {content.map((item) => (
-        <div className=" h-auto  flex flex-col justify-center mx-8 ">
-          <img src={item.image} alt="Image" className="rounded-3xl " />
-          <p className="text-xl	text-center mt-5 font-medium	">{item.title}</p>
+        <div
+          className={`   flex flex-col justify-center  items-center ${
+            isMobile ? "" : "mx-8"
+          } `}
+        >
+          <img
+            src={item.image}
+            alt="Image"
+            className={`rounded-3xl ${isMobile ? "w-3/4" : ""} `}
+          />
+          <p
+            className={`	text-center font-medium ${
+              isMobile ? "text-sm mt-2" : "mt-5  text-xl"
+            }	`}
+          >
+            {item.title}
+          </p>
         </div>
       ))}
     </div>

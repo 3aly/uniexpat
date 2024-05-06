@@ -1,7 +1,11 @@
+import { useMobile } from "@hooks/index";
+
 const Tabs = ({ tabNames, activeTab, setActiveTab }) => {
+  const isMobile = useMobile();
+
   return (
     <div className=" rounded-xl	my-5 px-6 py-3 bg-grey-100 shadow-xl">
-      <div className="flex text-slate-900	">
+      <div className={`flex   text-slate-900	${isMobile ? "flex-col" : ""}`}>
         {tabNames.map((tabName, index) => (
           <button
             key={index}

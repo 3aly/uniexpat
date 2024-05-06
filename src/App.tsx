@@ -26,7 +26,6 @@ function App() {
   console.log("itsScrolled", isScrolled);
   return (
     <div className="flex flex-col ">
-      {/* <LayoutWithNavbar> */}
       <NavBar
         className={`${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
       />
@@ -41,7 +40,6 @@ function App() {
       <section className="h-screen bg-purple-500 flex items-center justify-center text-white">
         <h2>Contact Section</h2>
       </section>
-      {/* </LayoutWithNavbar> */}
       <Footer />
     </div>
   );
