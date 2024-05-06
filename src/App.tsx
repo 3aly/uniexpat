@@ -33,21 +33,21 @@ function App() {
   }, []);
   console.log("itsScrolled", isScrolled);
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col gap-y-6">
       <NavBar
         className={`${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
       />
       <Home />
-      <section className="flex flex-col" id="services">
+      <section className="flex flex-col gap-y-5" id="services">
         <FreeServices />
         <Services />
       </section>
-      <section className="flex flex-col" id="about">
+      <section className="flex flex-col mb-8" id="about">
         <AboutOne />
         <AboutTwo />
       </section>
       <BlogsBrief />
-      {/* <section className="h-screen bg-purple-500 flex items-center justify-center text-white"> */}
+      {/* <section className="h-fit bg-purple-500 flex items-center justify-center text-white"> */}
       <ContactUs />
       {/* </section> */}
       <Footer />

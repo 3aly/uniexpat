@@ -16,13 +16,15 @@ const BlogsContainer = ({
   return (
     <div
       className={`flex text-start   ${
-        isMobile ? "flex-col m-2 g-y-5" : " flex-row m-8 justify-between"
+        isMobile
+          ? "flex-col m-2 gap-y-6 items-center"
+          : " flex-row m-8 justify-between"
       }`}
     >
       {content.map((item) => (
         <div
-          className={`rounded-lg	 shadow-2xl  p-4 bg-red-200 text-start  flex flex-col justify-center  items-start ${
-            isMobile ? "m-2" : "mx-8"
+          className={`rounded-lg	 shadow-2xl  p-4  text-start  flex flex-col justify-center  items-start ${
+            isMobile ? "items-center  m-2" : "mx-8"
           } `}
         >
           <div className="flex  flex-col relative">

@@ -24,8 +24,12 @@ const ContentContainer = ({
 
   return (
     <div
-      className={`  justify-between items-between  flex ${
-        isMobile ? "flex-col" : swiped ? "flex-row" : "flex-row-reverse"
+      className={`    flex ${
+        isMobile
+          ? "flex-col items-center"
+          : swiped
+          ? " justify-between items-between flex-row"
+          : "justify-between items-between flex-row-reverse"
       } `}
     >
       {/* First Section: Image */}

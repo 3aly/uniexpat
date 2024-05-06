@@ -9,7 +9,7 @@ export default function AboutTwo() {
   return (
     <div
       className={`flex  items-center tex-center justify-center  flex-col ${
-        isMobile ? "" : " h-screen  mt-4 "
+        isMobile ? "" : " h-screen  mb-12 mt-8 "
       } `}
     >
       <div
@@ -25,14 +25,16 @@ export default function AboutTwo() {
       </div>
       <div
         className={`flex   justify-between items-center  ${
-          isMobile ? "flex-col" : " justify-between w-fit flex-row mt-12"
+          isMobile
+            ? "flex-col"
+            : "flex-row gap-x-6 justify-between w-fit  flex-row mt-12"
         }`}
       >
         {unis.map((image) => (
           <img
             src={image}
             alt="Image"
-            className={` ${isMobile ? "my-5 w-3/4" : "h-fit mx-4"}`}
+            className={` ${isMobile ? "my-5 w-3/4" : "h-fit "}`}
           />
         ))}
       </div>

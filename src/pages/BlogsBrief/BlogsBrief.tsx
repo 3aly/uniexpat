@@ -14,7 +14,7 @@ export default function BlogsBrief() {
       } `}
     >
       <div
-        className={`text-purple-200  	 font-bold	 text-center ${
+        className={`text-purple-200   	 font-bold	 text-center ${
           isMobile ? "my-5 text-md mx-1" : "w-5/6 mb-12 text-4xl	"
         }`}
       >

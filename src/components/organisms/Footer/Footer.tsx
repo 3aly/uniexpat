@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-grey-300 font-semibold		 text-gray-700 py-10">
+    <footer className="bg-grey-500 font-semibold		 text-gray-700 py-10">
       <div className="max-w-6xl  mx-auto p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div className="w-full flex flex-1">
           <Logo />
