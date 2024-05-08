@@ -1,5 +1,6 @@
 import { IMAGES } from "@assets/images";
 import { useResize } from "@hooks/useResize";
+import { NavLink } from "react-router-dom";
 export default function Home() {
   const { isMobile } = useResize();
 
@@ -48,7 +49,7 @@ export default function Home() {
               isMobile ? "" : ""
             }`}
           >
-            Explora más programas
+            <NavLink to={"/programs"}>Explora más programas</NavLink>
           </button>
         </div>
       </div>

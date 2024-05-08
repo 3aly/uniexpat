@@ -1,3 +1,4 @@
+import FooterLogo from "@assets/footerLogo";
 import Logo from "@assets/logo";
 import React from "react";
 import { Link } from "react-scroll";
@@ -24,9 +25,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-grey-500 font-semibold		 text-gray-700 py-10">
-      <div className="max-w-6xl  mx-auto p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        <div className="w-full flex flex-1">
-          <Logo />
+      <div className="  mx-auto p-5 grid grid-cols-1  md:grid-cols-4 gap-8">
+        <div className="w-fit flex  bg-red-200">
+          <FooterLogo />
         </div>
         <div>
           <ul>

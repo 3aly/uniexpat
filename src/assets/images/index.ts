@@ -19,4 +19,5 @@ export const IMAGES = {
   uni3: require("./university3.png"),
   uni4: require("./university4.png"),
   contactBg: require("./contactbg.png"),
+  programsBg: require("./programs.png"),
 };

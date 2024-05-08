@@ -1,16 +1,34 @@
+import ArrowRight from "@assets/ArrowRight";
 import React from "react";
 
 const ProgramCard = ({ program }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
+    <div
+      key={program.id}
+      className=" p-3 rounded-3xl shadow-xl flex flex-col items-center justify-between"
+    >
       <img
-        src={program.image}
-        alt={program.title}
-        className="h-48 w-full object-cover rounded"
+        src={program.imageUrl}
+        alt="Program"
+        className="mb-3 w-full h-32 object-cover rounded-2xl"
       />
-      <div className="mt-4">
-        <h3 className="font-bold text-lg">{program.title}</h3>
-        <p className="text-gray-600">{program.description}</p>
+      <div className="text-left">
+        <h4 className="text-base text-black font-medium">{program.title}</h4>
+        <p className="text-sm font-light">{program.description}</p>
+      </div>
+      {/* <small className="text-sm text-gray-600">
+              Area: {program.area}
+            </small>
+            <br />
+            <small className="text-sm text-gray-600">
+              Discipline: {program.discipline}
+            </small>
+            <br />
+            <small className="text-sm text-gray-600">
+              Type: {program.programType}
+            </small> */}
+      <div className="me-1 my-1 self-end">
+        <ArrowRight />
       </div>
     </div>
   );

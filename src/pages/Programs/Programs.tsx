@@ -1,58 +1,45 @@
-import React, { useState, useEffect } from "react";
-import faker from "faker";
-
-import Pagination from "./Pagination";
-import { ProgramCard, SearchBox } from "@components/molecules";
-import { Filters } from "@components/organisms";
-
-const generateData = () => {
-  return [...Array(50)].map(() => ({
-    id: faker.datatype.uuid(),
-    image: faker.image.abstract(400, 300, true),
-    title: faker.company.catchPhrase(),
-    description: faker.lorem.sentences(2),
-  }));
-};
+import { IMAGES } from "@assets/images";
+import { Pagination, SearchBar } from "@components/molecules";
+import { Filters, ProgramsDisplay } from "@components/organisms";
+import { useResize } from "@hooks/useResize";
+import React, { useState } from "react";
 
 const Programs = () => {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [filters, setFilters] = useState({
+    area: "",
+    discipline: "",
+    programType: "",
+  });
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-
-  useEffect(() => {
-    const newData = generateData();
-    setData(newData);
-    setFilteredData(newData);
-  }, []);
-
-  const handleSearch = (event) => {
-    const value = event.target.value.toLowerCase();
-    const filtered = data.filter((program) =>
-      program.title.toLowerCase().includes(value)
-    );
-    setFilteredData(filtered);
-  };
-
-  // Paginate data
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalItems = 100;
+  const { isMobile } = useResize();
 
   return (
-    <div>
-      <SearchBox handleSearch={handleSearch} />
-      <Filters setData={setFilteredData} data={data} />
-      <div className="grid grid-cols-3 gap-4">
-        {currentItems.map((program) => (
-          <ProgramCard key={program.id} program={program} />
-        ))}
-      </div>
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        totalItems={filteredData.length}
-        paginate={setCurrentPage}
+    <div className="mx-12 flex flex-col justify-center ">
+      <img
+        src={IMAGES.programsBg}
+        alt="Image"
+        className={`rounded-3xl ${isMobile ? "w-full" : "w-full"} `}
       />
+      <div className="flex flex-row">
+        <Filters onFilterChange={setFilters} />
+        <div className="flex flex-col items-center w-3/4">
+          <SearchBar onSearchChange={setSearchQuery} />
+
+          <ProgramsDisplay
+            filters={filters}
+            searchQuery={searchQuery}
+            page={currentPage}
+          />
+          <Pagination
+            itemsPerPage={16}
+            totalItems={totalItems}
+            paginate={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </div>
+      </div>
     </div>
   );
 };
