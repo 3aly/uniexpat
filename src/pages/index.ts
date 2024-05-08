@@ -5,3 +5,4 @@ export { default as AboutOne } from "./AboutOne/AboutOne";
 export { default as AboutTwo } from "./AboutTwo/AboutTwo";
 export { default as BlogsBrief } from "./BlogsBrief/BlogsBrief";
 export { default as ContactUs } from "./ContactUs/ContactUs";
+export { default as Programs } from "./Programs/Programs";

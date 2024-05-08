@@ -6,6 +6,7 @@ import {
   ContactUs,
   FreeServices,
   Home,
+  Programs,
   Services,
 } from "./pages";
 import { Footer, NavBar } from "@components/organisms";
@@ -37,7 +38,8 @@ function App() {
       <NavBar
         className={`${isScrolled ? "bg-white shadow-md" : "bg-transparent"}`}
       />
-      <Home />
+      <Programs />
+      {/* <Home />
       <section className="flex flex-col gap-y-5" id="services">
         <FreeServices />
         <Services />
@@ -47,9 +49,7 @@ function App() {
         <AboutTwo />
       </section>
       <BlogsBrief />
-      {/* <section className="h-fit bg-purple-500 flex items-center justify-center text-white"> */}
-      <ContactUs />
-      {/* </section> */}
+      <ContactUs /> */}
       <Footer />
     </div>
   );
