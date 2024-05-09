@@ -5,7 +5,7 @@ const ProgramCard = ({ program }) => {
   return (
     <div
       key={program.id}
-      className=" p-3 rounded-3xl shadow-xl flex flex-col items-center justify-between"
+      className=" p-3 rounded-3xl shadow-2xl flex flex-col items-center justify-between"
     >
       <img
         src={program.imageUrl}

@@ -5,6 +5,7 @@ import { Link } from "react-scroll";
 import { Close, Menu } from "@mui/icons-material";
 import { useResize } from "@hooks/useResize";
 import SmallLogo from "@assets/smallLogo";
+import { NavLink } from "react-router-dom";
 
 const Navbar = ({ className = "" }) => {
   const { isMobile } = useResize();
@@ -24,7 +25,7 @@ const Navbar = ({ className = "" }) => {
     >
       <div className="max-w-7xl  px-4 ">
         <div className="flex justify-between items-center">
-          {isMobile ? <SmallLogo /> : <Logo />}
+          <NavLink to="/">{isMobile ? <SmallLogo /> : <Logo />}</NavLink>
           <div className="md:hidden ">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? (

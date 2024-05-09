@@ -1,3 +1,5 @@
+import { HorizontalExpander } from "@components/molecules";
+import { useResize } from "@hooks/useResize";
 import React from "react";
 
 const Filters = ({ onFilterChange }) => {
@@ -19,33 +21,28 @@ const Filters = ({ onFilterChange }) => {
     "Historia",
   ];
   const programOptions = ["Grado", "Máster"];
+  const { isMobile } = useResize();
 
   return (
-    <div className="w-1/4 flex flex-col p-4 gap-y-2">
+    <div className=" flex flex-col p-4 gap-y-2">
       {/* Area of Study Filter */}
-      <div className="flex flex-col gap-y-2">
-        <h3 className="text-black-200 font-bold	text-xl	">
-          Filtro por área de estudio
-        </h3>
+      <HorizontalExpander title={"Filtro por área de estudio"}>
         {areaOptions.map((option, index) => (
           <label
             key={index}
-            className="flex text-sm	items-center flex-row gap-2"
+            className="flex text-xs	 items-center flex-row gap-2"
           >
             <input
               type="checkbox"
-              className="form-checkbox"
+              className="w-4 h-4  bg-gray-100 border-gray-300  focus:ring-primary-500 focus:ring-opacity-50"
               onChange={(e) => onFilterChange("area", option)}
             />
             {option}
           </label>
         ))}
-      </div>
+      </HorizontalExpander>
       {/* Discipline Filter */}
-      <div className="flex flex-col gap-y-2">
-        <h3 className="text-black-200 font-bold	text-xl	">
-          Filtro por disciplina
-        </h3>
+      <HorizontalExpander title={" Filtro por disciplina"}>
         {disciplineOptions.map((option, index) => (
           <label
             key={index}
@@ -53,16 +50,15 @@ const Filters = ({ onFilterChange }) => {
           >
             <input
               type="checkbox"
-              className="form-checkbox"
+              className="w-4 h-4 rounded-sm bg-gray-100 border-gray-300 focus:ring-primary-500 focus:ring-opacity-50"
               onChange={(e) => onFilterChange("discipline", option)}
             />
             {option}
           </label>
         ))}
-      </div>
+      </HorizontalExpander>
       {/* Program Type Filter */}
-      <div className="flex flex-col gap-y-2">
-        <h3 className="text-black-200 font-bold	text-xl	">Filtro por programa</h3>
+      <HorizontalExpander title={"Filtro por programa"}>
         {programOptions.map((option, index) => (
           <label
             key={index}
@@ -70,13 +66,14 @@ const Filters = ({ onFilterChange }) => {
           >
             <input
               type="checkbox"
-              className="form-checkbox"
               onChange={(e) => onFilterChange("programType", option)}
+              className="w-4 h-4 rounded-lg bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-opacity-50"
             />
+
             {option}
           </label>
         ))}
-      </div>
+      </HorizontalExpander>
     </div>
   );
 };

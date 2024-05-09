@@ -1,3 +1,4 @@
+import { useResize } from "@hooks/useResize";
 import React from "react";
 
 interface PaginationProps {
@@ -14,14 +15,13 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage,
 }) => {
   const pageNumbers: number[] = [];
-
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   return (
     <nav>
-      <ul className="flex list-none gap-x-2">
+      <ul className="flex list-none gap-x-2 mt-4">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <a
