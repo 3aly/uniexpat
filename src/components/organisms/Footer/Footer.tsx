@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <footer className="bg-grey-500 font-semibold		 text-gray-700 py-10">
       <div className="  mx-auto p-5 grid grid-cols-1  md:grid-cols-4 gap-8">
-        <div className="w-fit flex  bg-red-200">
+        <div className="w-fit flex self-start  ">
           <FooterLogo />
         </div>
         <div>

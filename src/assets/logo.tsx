@@ -5,9 +5,9 @@ const Logo = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       // xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 276 90"
-      width="260"
-      height="80"
+      viewBox="0 0 260 70"
+      width="220"
+      height="50"
       fill="none"
     >
       <g opacity="100%" filter="url(#filter_dshadow_0_0_0_00000014)">

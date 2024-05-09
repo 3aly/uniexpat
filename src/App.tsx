@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   AboutOne,
   AboutTwo,
@@ -37,37 +37,30 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
-        <NavBar
-          className={`${
-            isScrolled
-              ? "bg-white shadow-md fixed w-full top-0 z-50"
-              : "bg-transparent fixed w-full top-0 z-50"
-          }`}
-        />
-        <main className="pt-16">
-          {/* Adjust padding to account for fixed navbar */}
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <div className="flex flex-col gap-y-6">
-                  <Home />
-                  <section className="flex flex-col gap-y-5" id="services">
-                    <FreeServices />
-                    <Services />
-                  </section>
-                  <section className="flex flex-col mb-8" id="about">
-                    <AboutOne />
-                    <AboutTwo />
-                  </section>
-                  <BlogsBrief />
-                  <ContactUs />
-                </div>
-              }
-            />
-            <Route path="/programs" element={<Programs />} />
-            {/* <Route path="/services" element={<Services />} /> */}
-            {/* <Route
+        <NavBar isScrolled={isScrolled} />
+        {/* Adjust padding to account for fixed navbar */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="flex flex-col gap-y-6">
+                <Home />
+                <section className="flex flex-col gap-y-5" id="services">
+                  <FreeServices />
+                  <Services />
+                </section>
+                <section className="flex flex-col mb-8" id="about">
+                  <AboutOne />
+                  <AboutTwo />
+                </section>
+                <BlogsBrief />
+                <ContactUs />
+              </div>
+            }
+          />
+          <Route path="/programs" element={<Programs />} />
+          {/* <Route path="/services" element={<Services />} /> */}
+          {/* <Route
               path="/about"
               element={
                 <>
@@ -78,9 +71,8 @@ function App() {
             />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/blogs" element={<BlogsBrief />} /> */}
-            {/* Add other routes as needed */}
-          </Routes>
-        </main>
+          {/* Add other routes as needed */}
+        </Routes>
         <Footer />
       </div>
     </BrowserRouter>

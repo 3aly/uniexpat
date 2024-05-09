@@ -80,9 +80,9 @@ const Programs: React.FC = () => {
               ref={sidebarRef}
               style={{
                 borderTopRightRadius: "14px",
-                borderTopLeftRadius: "14px",
+                borderBottomRightRadius: "14px",
               }}
-              className={`fixed   inset-y-0 left-0 z-20 transform w-5/6 ${
+              className={`fixed  z-10 inset-y-0 left-0  transform w-5/6 ${
                 isFiltersVisible ? "translate-x-0" : "-translate-x-full"
               } transition-transform duration-300 ease-in-out bg-white shadow-xl  overflow-auto`}
             >
