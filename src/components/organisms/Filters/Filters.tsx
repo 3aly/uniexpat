@@ -1,5 +1,6 @@
 import { HorizontalExpander } from "@components/molecules";
 import { useResize } from "@hooks/useResize";
+import { Checkbox } from "@mui/material";
 import React from "react";
 
 const Filters = ({ onFilterChange }) => {
@@ -32,8 +33,7 @@ const Filters = ({ onFilterChange }) => {
             key={index}
             className="flex text-xs	 items-center flex-row gap-2"
           >
-            <input
-              type="checkbox"
+            <Checkbox
               className="w-4 h-4  bg-gray-100 border-gray-300  focus:ring-primary-500 focus:ring-opacity-50"
               onChange={(e) => onFilterChange("area", option)}
             />
@@ -48,8 +48,7 @@ const Filters = ({ onFilterChange }) => {
             key={index}
             className="flex text-sm	items-center flex-row gap-2"
           >
-            <input
-              type="checkbox"
+            <Checkbox
               className="w-4 h-4 rounded-sm bg-gray-100 border-gray-300 focus:ring-primary-500 focus:ring-opacity-50"
               onChange={(e) => onFilterChange("discipline", option)}
             />
@@ -64,8 +63,8 @@ const Filters = ({ onFilterChange }) => {
             key={index}
             className="flex text-sm	items-center flex-row gap-2"
           >
-            <input
-              type="checkbox"
+            <Checkbox
+              sx={{ bgcolor: "red" }}
               onChange={(e) => onFilterChange("programType", option)}
               className="w-4 h-4 rounded-lg bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-opacity-50"
             />

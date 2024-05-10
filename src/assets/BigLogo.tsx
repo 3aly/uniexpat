@@ -1,12 +1,14 @@
 import React from "react";
 
-const FooterLogo = () => {
+const BigLogo = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="250"
-      viewBox="10 100 350 210"
-      height="150"
+      width="500"
+      zoomAndPan="magnify"
+      viewBox="0 0 375 374.999991"
+      height="500"
+      preserveAspectRatio="xMidYMid meet"
       version="1.0"
     >
       <defs>
@@ -641,4 +643,4 @@ const FooterLogo = () => {
   );
 };
 
-export default FooterLogo;
+export default BigLogo;

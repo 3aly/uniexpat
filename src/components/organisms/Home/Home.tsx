@@ -44,15 +44,13 @@ export default function Home() {
           <button className="flex-1 bg-purple-200 text-white py-2 px-4 md:me-2 md:mb-0 mb-2">
             Necesitas nuestra ayuda!
           </button>
-          <NavLink to={"/programs"}>
-            <div
-              className={`flex-1 bg-transparent border border-purple-600 text-purple-600 py-2 px-4 md:ms-2 md:mb-0 mb-2 ${
-                isMobile ? "" : ""
-              }`}
-            >
-              Explora más programas
-            </div>
-          </NavLink>
+          <button
+            className={`flex-1 bg-transparent border border-purple-200 text-purple-600 py-2 px-4 md:ms-2 md:mb-0 mb-2 ${
+              isMobile ? "" : ""
+            }`}
+          >
+            <NavLink to={"/programs"}>Explora más programas</NavLink>
+          </button>
         </div>
       </div>
     </div>
