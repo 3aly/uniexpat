@@ -3,20 +3,30 @@ import FooterLogo from "@assets/footerLogo";
 import Logo from "@assets/logo";
 import Divider from "@mui/material/Divider";
 import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useResize } from "@hooks/useResize";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/authSlice";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { isMobile } = useResize();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
 
   const location = useLocation();
+  const redirect = location.state?.from || "/";
 
   useEffect(() => {
     console.log("location,", location);
@@ -34,12 +44,36 @@ const Login: React.FC = () => {
         password
       );
       console.log("User created: ", userCredential.user);
+      navigate(redirect); // Redirect user to the intended page or default path
+
       // Further actions here, e.g., redirect or update UI
     } catch (error: any) {
       console.error("Error signing up: ", error.message);
       // Handle errors here, such as displaying a notification
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Google Sign-in User: ", user);
+      // Dispatch user data to Redux store
+      dispatch(
+        setUser({
+          email: user.email,
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          // include other user details as needed
+        })
+      );
+      navigate(redirect); // Redirect user to the intended page or default path
+    } catch (error) {
+      console.error("Error signing in with Google: ", error);
+    }
+  };
+
   return (
     <>
       <div
@@ -109,7 +143,10 @@ const Login: React.FC = () => {
                 Sign in with email
               </button>
             </form>
-            <button className="text-lg	font-medium	 bg-blue-600 text-white w-full py-2  mb-2">
+            <button
+              className="text-lg	font-medium	 bg-blue-600 text-white w-full py-2  mb-2"
+              onClick={handleGoogleSignIn}
+            >
               Sign in with Gmail
             </button>
             <div className="relative my-4">

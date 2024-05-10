@@ -64,7 +64,6 @@ const Filters = ({ onFilterChange }) => {
             className="flex text-sm	items-center flex-row gap-2"
           >
             <Checkbox
-              sx={{ bgcolor: "red" }}
               onChange={(e) => onFilterChange("programType", option)}
               className="w-4 h-4 rounded-lg bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-opacity-50"
             />

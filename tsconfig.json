@@ -30,7 +30,8 @@
       "@datatypes/*": ["./src/types/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@firebase/*": ["./src/firebase/*"],
-      "@fakers/*": ["./src/fakers/*"]
+      "@fakers/*": ["./src/fakers/*"],
+      "@schemas/*": ["./src/schemas/*"]
     }
   },
   "include": ["src"]
