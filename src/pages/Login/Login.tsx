@@ -119,8 +119,8 @@ const Login: React.FC = () => {
         setUser({
           email: user.email,
           uid: user.uid,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
+          userName: user.displayName,
+          phoneNumber: user.phoneNumber,
           // include other user details as needed
         })
       );

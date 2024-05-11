@@ -12,7 +12,7 @@ const Navbar = ({ className = "", isScrolled = false }) => {
   const { isMobile } = useResize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  console.log("location", location);
+
   const links = [
     { to: "home", label: "Home", mx: "mx-2 md:mx-5" },
     { to: "services", label: "Services", mx: "mx-2 md:mx-5" },
@@ -25,11 +25,9 @@ const Navbar = ({ className = "", isScrolled = false }) => {
 
   return (
     <div
-      className={` text-purple-100 py-2 text-sm font-semibold w-full  top-0 z-50 ${
-        user ? "" : ""
-      } ${className}  ${
+      className={` text-purple-100 py-2 text-sm font-semibold w-full  top-0 z-50  ${className}  ${
         isScrolled ? "bg-white shadow-m  " : "bg-transparent "
-      }`}
+      }   ${location.pathname === "/" ? "fixed" : "sticky bg-white shadow-m"}`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
