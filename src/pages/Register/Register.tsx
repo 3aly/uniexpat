@@ -3,225 +3,235 @@ import FooterLogo from "@assets/footerLogo";
 import Divider from "@mui/material/Divider";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useLocation, Form } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useResize } from "@hooks/useResize";
-import { IMAGES } from "@assets/images";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { setUser } from "../../store/authSlice";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { ErrorMessage, Field, Formik } from "formik";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 import RegisterSchema from "../../schemas/RegisterSchema";
+import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  Autocomplete,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { LoadingButton } from "@mui/lab";
 
 const Register: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [rePassword, setRePassword] = useState("");
-  const [showRePassword, setShowRePassword] = useState(false);
+  interface Inputs {
+    userName: string;
+    email: string;
+    country: string;
+    phoneNumber: string;
+    password: string;
+  }
   const [showPassword, setShowPassword] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [country, setCountry] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { isMobile } = useResize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [firebaseError, setFirebaseError] = useState<string | null>(null);
 
-  const db = getFirestore(); // Initialize Firestore instance
-
-  useEffect(() => {
-    console.log("location,", location);
-  }, [location]);
-
-  const redirect = location.state?.from || "/";
+  const redirect = location?.state?.from || "/";
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const toggleRePasswordVisibility = () => {
-    setShowRePassword(!showRePassword);
-  };
-  const handleSubmit = async (values, { setSubmitting }) => {
+
+  // const handleSubmit =
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: yupResolver(RegisterSchema),
+  });
+  const onSubmit: SubmitHandler<Inputs> = async (values) => {
+    setLoading(true);
+
+    console.log("submit", values);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         values.email,
         values.password
       );
-      console.log("User created: ", userCredential.user);
 
       await setDoc(doc(db, "users", userCredential.user.uid), {
-        firstName: values.firstName,
-        lastName: values.lastName,
+        userName: values.userName,
+        email: values.email,
         phoneNumber: values.phoneNumber,
         country: values.country,
       });
+      console.log("User created: ", userCredential.user);
 
       dispatch(
         setUser({
           uid: userCredential.user.uid,
-          email: userCredential.user.email,
-          ...values,
+          userName: values?.userName,
+          email: values?.email,
+          country: values?.country,
+          phoneNumber: values?.phoneNumber,
         })
       );
-
+      console.log("redirect", redirect);
       navigate(redirect);
-    } catch (error: any) {
-      console.error("Error signing up or storing data: ", error.message);
-      setSubmissionError(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        setFirebaseError("this email is already in use"); // Set Firebase error message
+      }
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
-    setSubmitting(false);
+    // setSubmitting(false);
   };
-
   return (
     <>
       <div
-        style={{
-          backgroundImage: `${isMobile ? "" : `url(${IMAGES.contactBg})`} `,
-        }}
+        style={{}}
         className={` bg-no-repeat bg-cover flex items-center justify-center  ${
-          isMobile ? "h-fit my-5" : "p-4 h-fit"
+          isMobile ? "h-fit my-5 ms-2" : "mt-12"
         }`}
       >
         <div
-          className={`  rounded-xl  my-5 items-center flex  ${
+          className={`  rounded-2xl  my-12 items-center text-start flex  ${
             isMobile
-              ? "h-fit flex-col w-3/4"
-              : " shadow-lg bg-gray-100 flex-col max-w-4xl w-full"
+              ? "h-fit flex-col  gap-y-5 "
+              : "p-12 shadow-lg bg-gray-100 flex-col max-w-5xl w-full gap-y-5"
           }`}
         >
-          <h1 className="text-3xl	 font-bold mb-2 font-bold	">
-            Let’s get started
-          </h1>
-          <p className="text-gray-700  text-base	font-medium	">
-            Set up your account using your email address or you can use your
-            preferred social network
-          </p>
+          <div className=" w-full ">
+            <h1 className="text-3xl	 font-bold mb-2 font-bold	">
+              Let’s get started
+            </h1>
+            <p className="text-gray-700  text-base	font-medium	">
+              Set up your account using your email address or you can use your
+              preferred social network
+            </p>
+          </div>
 
-          <div className={` flex flex-row  ${isMobile ? "" : ""}`}>
-            <div className="w-2/5">
+          <div
+            className={`flex   ${
+              isMobile
+                ? "flex-col w-full ms-1 justify-center"
+                : "justify-between w-full flex-row"
+            }`}
+          >
+            <div className="w-5/6">
               {isMobile ? (
-                <>
-                  <FooterLogo />
-                </>
+                <>{/* <FooterLogo /> */}</>
               ) : (
-                <>
-                  <BigLogo />
-                </>
+                <>{/* <BigLogo /> */}</>
               )}
             </div>
 
             <div className="w-full">
-              <Formik
-                initialValues={{
-                  userName: "",
-                  phoneNumber: "",
-                  country: "",
-                  email: "",
-                  password: "",
-                  rePassword: "",
-                }}
-                validationSchema={RegisterSchema}
-                onSubmit={handleSubmit}
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex w-full  gap-y-3 flex-col "
               >
-                {({ isSubmitting, setFieldValue }) => (
-                  <Form className="flex w-full flex-col space-y-4">
-                    <Field
-                      name="userName"
-                      type="text"
-                      className="w-full p-3  border"
-                      placeholder="User Name"
+                <TextField
+                  // variant="outlined"
+                  variant="outlined"
+                  label="User Name"
+                  id="userName"
+                  type="text"
+                  {...register("userName")}
+                  fullWidth
+                  error={Boolean(errors.email) || Boolean(firebaseError)}
+                  helperText={errors.email?.message || firebaseError}
+                />
+                <TextField
+                  // variant="outlined"
+                  variant="outlined"
+                  label="E-mail"
+                  id="email"
+                  type="email"
+                  {...register("email")}
+                  fullWidth
+                  error={Boolean(errors.email)}
+                  helperText={errors.email?.message}
+                />
+
+                <Autocomplete
+                  disablePortal
+                  id="country"
+                  options={["egypt", "combo"]}
+                  renderInput={(params) => (
+                    <TextField
+                      error={Boolean(errors.country)}
+                      helperText={errors.country?.message}
+                      {...params}
+                      {...register("country")}
+                      label="Country"
                     />
-                    {/* <ErrorMessage name="firstName" component="div" /> */}
+                  )}
+                />
 
-                    <Field
-                      className="w-full p-3  border"
-                      name="phoneNumber"
-                      type="tel"
-                      placeholder="Phone Number"
-                    />
-                    {/* <ErrorMessage
-                    name="phoneNumber"
-                    component="div"
-                    className="error"
-                  /> */}
+                <TextField
+                  variant="outlined"
+                  label="Phone Number"
+                  id="phoneNumber"
+                  type="text"
+                  {...register("phoneNumber")}
+                  fullWidth
+                  error={Boolean(errors.phoneNumber)}
+                  helperText={errors.phoneNumber?.message}
+                />
 
-                    <Field
-                      as="select"
-                      name="country"
-                      className="w-full p-3  border"
-                    >
-                      <option value="">Select Country</option>
-                      <option value="USA">USA</option>
-                      <option value="UK">UK</option>
-                      <option value="Canada">Canada</option>
-                      {/* Add other countries as needed */}
-                    </Field>
-                    {/* <ErrorMessage
-                    name="country"
-                    component="div"
-                    className="error"
-                  /> */}
+                <TextField
+                  variant="outlined"
+                  id="password"
+                  label="Password"
+                  sx={{ my: 1, mb: 2 }}
+                  error={Boolean(errors.password)}
+                  helperText={errors.password?.message}
+                  type={showPassword ? "text" : "password"}
+                  {...register("password")}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          //       aria-label="toggle password visibility"
+                          onClick={togglePasswordVisibility}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth
+                />
 
-                    <Field
-                      name="email"
-                      type="email"
-                      className="w-full p-3  border"
-                      placeholder="Email address"
-                    />
-                    {/* <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="error"
-                  /> */}
+                <LoadingButton
+                  loading={loading}
+                  type="submit"
+                  className="w-full bg-blue-500 text-white "
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#371373",
+                    py: 2,
+                    "&:hover": {
+                      backgroundColor: "#774ac0", // Set the hover background color
+                      borderColor: "#4C3B4D", // Optional: change the border color on hover
+                      color: "#FFFFFF", // Optional: change the text color on hover
+                    },
+                  }}
+                >
+                  Create Account
+                </LoadingButton>
+              </form>
 
-                    <div className="relative">
-                      <Field
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        className="w-full p-3  border"
-                      />
-                      {/* <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="error"
-                    /> */}
-                    </div>
-
-                    <div className="relative">
-                      <Field
-                        name="rePassword"
-                        type="password"
-                        placeholder="Confirm Password"
-                        className="w-full p-3  border"
-                      />
-                      <ErrorMessage
-                        name="rePassword"
-                        component="div"
-                        className="error"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="bg-purple-200 text-white w-full py-2"
-                    >
-                      Sign up with email
-                    </button>
-                  </Form>
-                )}
-              </Formik>
-              <button className="text-lg	font-medium	 bg-blue-600 text-white w-full py-2  mb-2">
-                Sign up with Facebook
-              </button>
               <div className="relative my-4">
                 <Divider
                   className={"text-base	font-medium	"}
@@ -235,15 +245,29 @@ const Register: React.FC = () => {
                   or
                 </Divider>
               </div>
-              <button className="text-lg	font-semibold	 border-2 border-purple-500 text-purple-500 w-full py-2 ">
-                <NavLink
-                  to={"/login"}
-                  state={{ from: location.state.from }}
-                  replace
+              <NavLink
+                to={"/login"}
+                state={{ from: location?.state?.from }}
+                replace
+              >
+                <Button
+                  fullWidth
+                  sx={{
+                    borderColor: "#991A8E",
+                    color: "#991A8E",
+                    py: 2,
+                    fontWeight: "bold",
+                    "&:hover": {
+                      backgroundColor: "#774ac0", // Set the hover background color
+                      borderColor: "#4C3B4D", // Optional: change the border color on hover
+                      color: "#FFFFFF", // Optional: change the text color on hover
+                    },
+                  }}
+                  variant="outlined"
                 >
-                  Sign In
-                </NavLink>
-              </button>
+                  Log In
+                </Button>
+              </NavLink>
             </div>
           </div>
         </div>

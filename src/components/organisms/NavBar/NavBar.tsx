@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 import Logo from "@assets/logo";
 import SmallLogo from "@assets/smallLogo";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Link } from "react-scroll";
 import { Close, Menu } from "@mui/icons-material"; // Using MUI icons as an example
 import { useResize } from "@hooks/useResize";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/authSlice";
 
 const Navbar = ({ className = "", isScrolled = false }) => {
   const { isMobile } = useResize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const location = useLocation();
+  console.log("location", location);
   const links = [
     { to: "home", label: "Home", mx: "mx-2 md:mx-5" },
     { to: "services", label: "Services", mx: "mx-2 md:mx-5" },
     { to: "about", label: "About", mx: "mx-2 md:mx-5" },
     { to: "contact", label: "Contact", mx: "mx-2 md:mx-5" },
   ];
+  const { user } = useSelector((state: RootState) => {
+    return state;
+  });
 
   return (
     <div
-      className={` text-purple-100 py-2 text-sm font-semibold w-full fixed top-0 z-50  ${className}  ${
+      className={` text-purple-100 py-2 text-sm font-semibold w-full  top-0 z-50 ${
+        user ? "" : ""
+      } ${className}  ${
         isScrolled ? "bg-white shadow-m  " : "bg-transparent "
       }`}
     >

@@ -17,10 +17,12 @@ const fallBackSpinner = (
     px={{ base: "24px", md: "40px" }}
     pt={{ base: "36px", md: "24px" }}
     pb={6}
+    className="flex justify-center items-center h-screen bg-gray-100" // Added Tailwind classes
   >
-    <CircularProgress />
+    <CircularProgress sx={{ color: "#371373" }} />
   </Box>
 );
+
 const customRoutes = [
   {
     path: "/",

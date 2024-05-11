@@ -8,7 +8,7 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
-      console.log(state);
+      console.log("state.user", state.user);
     },
     clearUser(state) {
       state.user = null;
@@ -23,5 +23,6 @@ const store = configureStore({
     user: userSlice.reducer,
   },
 });
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;

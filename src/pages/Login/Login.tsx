@@ -4,22 +4,42 @@ import Logo from "@assets/logo";
 import Divider from "@mui/material/Divider";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 import { useResize } from "@hooks/useResize";
 import {
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/authSlice";
+import { doc, getDoc } from "firebase/firestore";
+import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  Button,
+  FormControl,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+  TextField,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { LoadingButton } from "@mui/lab";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  interface IFormInput {
+    email: string;
+    password: string;
+  }
+
+  const { register, handleSubmit } = useForm<IFormInput>();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+
   const { isMobile } = useResize();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,21 +55,57 @@ const Login: React.FC = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<IFormInput> = async (values) => {
+    setLoading(true);
+
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
-        email,
-        password
+        values.email,
+        values.password
       );
+
+      const docRef = doc(db, "users", userCredential.user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        dispatch(
+          setUser({
+            accessToken: docSnap.data().accessToken,
+            phoneNumber: docSnap.data().phoneNumber,
+            uid: docSnap.data().uid,
+            userName: docSnap.data().userName,
+            country: docSnap.data().country,
+            // include other user details as needed
+          })
+        );
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
+      }
       console.log("User created: ", userCredential.user);
       navigate(redirect); // Redirect user to the intended page or default path
 
       // Further actions here, e.g., redirect or update UI
     } catch (error: any) {
-      console.error("Error signing up: ", error.message);
-      // Handle errors here, such as displaying a notification
+      console.error("Error signing in: ", error.message);
+      if (
+        error.code === "auth/invalid-email" ||
+        error.code === "auth/invalid-credential"
+      ) {
+        setError((prev) => ({ ...prev, email: "Invalid email address." }));
+      } else if (error.code === "auth/wrong-password") {
+        setError((prev) => ({ ...prev, password: "Incorrect password." }));
+      } else {
+        setError((prev) => ({
+          ...prev,
+          email: "Authentication failed.",
+          password: "Authentication failed.",
+        }));
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -110,45 +166,76 @@ const Login: React.FC = () => {
               Set up your account using your email address or you can use your
               preferred social network
             </p>
-            <form onSubmit={handleSubmit}>
-              <input
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <TextField
+                // variant="outlined"
+                variant="outlined"
+                label="E-mail"
+                id="email"
+                sx={{ my: 1 }}
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email address"
-                className="w-full p-3 mb-4 border "
+                {...register("email")}
+                fullWidth
+                error={!!error.email}
+                helperText={error.email || "Enter your email"}
               />
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  className="w-full p-3 mb-4 border"
-                />
-                <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="text-gray-600 focus:outline-none"
-                  >
-                    {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                  </button>
-                </span>
-              </div>
-              <button
+              <TextField
+                variant="outlined"
+                id="password"
+                label="Password"
+                sx={{ my: 1, mb: 2 }}
+                error={!!error.password}
+                helperText={error.password || "Enter your password"}
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        //       aria-label="toggle password visibility"
+                        onClick={togglePasswordVisibility}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth
+              />
+
+              <LoadingButton
+                loading={loading}
                 type="submit"
-                className="text-lg	font-medium	 bg-purple-200 text-white w-full py-2  mb-2"
+                className="w-full bg-blue-500 text-white "
+                variant="contained"
+                sx={{
+                  backgroundColor: "#371373",
+                  py: 2,
+                  "&:hover": {
+                    backgroundColor: "#774ac0", // Set the hover background color
+                    borderColor: "#4C3B4D", // Optional: change the border color on hover
+                    color: "#FFFFFF", // Optional: change the text color on hover
+                  },
+                }}
               >
-                Sign in with email
-              </button>
+                Sign In
+              </LoadingButton>
             </form>
-            <button
-              className="text-lg	font-medium	 bg-blue-600 text-white w-full py-2  mb-2"
+            <Button
+              sx={{
+                backgroundColor: "#EF4444",
+                py: 2,
+                "&:hover": {
+                  backgroundColor: "#ff5454", // Set the hover background color
+                },
+              }}
+              variant="contained"
+              fullWidth
               onClick={handleGoogleSignIn}
             >
               Sign in with Gmail
-            </button>
+            </Button>
             <div className="relative my-4">
               <Divider
                 className={"text-base	font-medium	"}
@@ -162,15 +249,29 @@ const Login: React.FC = () => {
                 or
               </Divider>
             </div>
-            <button className="text-lg	font-semibold	 border-2 border-purple-500 text-purple-500 w-full py-2 ">
-              <NavLink
-                to={"/register"}
-                state={{ from: location?.state?.from }}
-                replace
+            <NavLink
+              to={"/register"}
+              state={{ from: location?.state?.from }}
+              replace
+            >
+              <Button
+                fullWidth
+                sx={{
+                  borderColor: "#991A8E",
+                  color: "#991A8E",
+                  py: 2,
+                  fontWeight: "bold",
+                  "&:hover": {
+                    backgroundColor: "#774ac0", // Set the hover background color
+                    borderColor: "#4C3B4D", // Optional: change the border color on hover
+                    color: "#FFFFFF", // Optional: change the text color on hover
+                  },
+                }}
+                variant="outlined"
               >
                 Create new account
-              </NavLink>
-            </button>
+              </Button>
+            </NavLink>
           </div>
         </div>
       </div>
