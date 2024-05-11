@@ -177,7 +177,7 @@ const Login: React.FC = () => {
                 {...register("email")}
                 fullWidth
                 error={!!error.email}
-                helperText={error.email || "Enter your email"}
+                helperText={error.email}
               />
               <TextField
                 variant="outlined"
@@ -185,7 +185,7 @@ const Login: React.FC = () => {
                 label="Password"
                 sx={{ my: 1, mb: 2 }}
                 error={!!error.password}
-                helperText={error.password || "Enter your password"}
+                helperText={error.password}
                 type={showPassword ? "text" : "password"}
                 {...register("password")}
                 InputProps={{
