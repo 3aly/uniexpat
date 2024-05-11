@@ -145,24 +145,24 @@ const Login: React.FC = () => {
           }`}
         >
           <div>
-            {isMobile ? (
-              <>
-                <FooterLogo />
-              </>
-            ) : (
-              <>
-                <BigLogo />
-              </>
-            )}
+            {isMobile ? <>{/* <FooterLogo /> */}</> : <>{/* <BigLogo /> */}</>}
           </div>
 
           <div
             className={` flex flex-col  ${isMobile ? "" : "w-1/2 p-8 gap-4"}`}
           >
-            <h1 className="text-3xl	 font-bold mb-2 font-bold	">
+            <h1
+              className={`	 font-bold mb-2 font-bold ${
+                isMobile ? "text-xl" : "text-3xl"
+              }	`}
+            >
               Let’s get started
             </h1>
-            <p className="text-gray-700 mb-4 text-base	font-medium	">
+            <p
+              className={`text-gray-700 	font-medium ${
+                isMobile ? "text-xs" : " text-base"
+              }	`}
+            >
               Set up your account using your email address or you can use your
               preferred social network
             </p>
@@ -211,7 +211,8 @@ const Login: React.FC = () => {
                 variant="contained"
                 sx={{
                   backgroundColor: "#371373",
-                  py: 2,
+                  py: isMobile ? 1 : 2,
+                  my: isMobile ? 1 : 0,
                   "&:hover": {
                     backgroundColor: "#774ac0", // Set the hover background color
                     borderColor: "#4C3B4D", // Optional: change the border color on hover
@@ -225,7 +226,7 @@ const Login: React.FC = () => {
             <Button
               sx={{
                 backgroundColor: "#EF4444",
-                py: 2,
+                py: isMobile ? 1 : 2,
                 "&:hover": {
                   backgroundColor: "#ff5454", // Set the hover background color
                 },
@@ -259,7 +260,7 @@ const Login: React.FC = () => {
                 sx={{
                   borderColor: "#991A8E",
                   color: "#991A8E",
-                  py: 2,
+                  py: isMobile ? 1 : 2,
                   fontWeight: "bold",
                   "&:hover": {
                     backgroundColor: "#774ac0", // Set the hover background color

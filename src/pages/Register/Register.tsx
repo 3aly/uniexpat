@@ -95,184 +95,186 @@ const Register: React.FC = () => {
     // setSubmitting(false);
   };
   return (
-    <>
+    <div
+      style={{}}
+      className={` flex items-center justify-center  ${
+        isMobile ? "h-fit my-5 " : "mt-12"
+      }`}
+    >
       <div
-        style={{}}
-        className={` bg-no-repeat bg-cover flex items-center justify-center  ${
-          isMobile ? "h-fit my-5 ms-2" : "mt-12"
+        className={`  rounded-2xl  my-12 items-center text-start flex  ${
+          isMobile
+            ? "h-fit flex-col  gap-y-5 "
+            : "p-12 shadow-lg bg-gray-100 flex-col max-w-5xl w-full gap-y-5"
         }`}
       >
+        <div className={`  ${isMobile ? "w-3/4" : "w-full"} `}>
+          <h1
+            className={`	 font-bold mb-2 font-bold ${
+              isMobile ? "text-xl" : "text-3xl"
+            }	`}
+          >
+            Let’s get started
+          </h1>
+          <p
+            className={`text-gray-700 	font-medium ${
+              isMobile ? "text-xs" : " text-base"
+            }	`}
+          >
+            Set up your account using your email address or you can use your
+            preferred social network
+          </p>
+        </div>
+
         <div
-          className={`  rounded-2xl  my-12 items-center text-start flex  ${
+          className={`flex   ${
             isMobile
-              ? "h-fit flex-col  gap-y-5 "
-              : "p-12 shadow-lg bg-gray-100 flex-col max-w-5xl w-full gap-y-5"
+              ? "flex-col w-fit  justify-center"
+              : "justify-between w-full flex-row"
           }`}
         >
-          <div className=" w-full ">
-            <h1 className="text-3xl	 font-bold mb-2 font-bold	">
-              Let’s get started
-            </h1>
-            <p className="text-gray-700  text-base	font-medium	">
-              Set up your account using your email address or you can use your
-              preferred social network
-            </p>
+          <div className="w-5/6">
+            {isMobile ? <>{/* <FooterLogo /> */}</> : <>{/* <BigLogo /> */}</>}
           </div>
 
-          <div
-            className={`flex   ${
-              isMobile
-                ? "flex-col w-full ms-1 justify-center"
-                : "justify-between w-full flex-row"
-            }`}
-          >
-            <div className="w-5/6">
-              {isMobile ? (
-                <>{/* <FooterLogo /> */}</>
-              ) : (
-                <>{/* <BigLogo /> */}</>
-              )}
-            </div>
+          <div className="w-full">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex w-fit  gap-y-3 flex-col "
+            >
+              <TextField
+                // variant="outlined"
+                variant="outlined"
+                label="User Name"
+                id="userName"
+                type="text"
+                {...register("userName")}
+                fullWidth
+                error={Boolean(errors.email) || Boolean(firebaseError)}
+                helperText={errors.email?.message || firebaseError}
+              />
+              <TextField
+                // variant="outlined"
+                variant="outlined"
+                label="E-mail"
+                id="email"
+                type="email"
+                {...register("email")}
+                fullWidth
+                error={Boolean(errors.email)}
+                helperText={errors.email?.message}
+              />
 
-            <div className="w-full">
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="flex w-full  gap-y-3 flex-col "
+              <Autocomplete
+                disablePortal
+                id="country"
+                options={["egypt", "combo"]}
+                renderInput={(params) => (
+                  <TextField
+                    error={Boolean(errors.country)}
+                    helperText={errors.country?.message}
+                    {...params}
+                    {...register("country")}
+                    label="Country"
+                  />
+                )}
+              />
+
+              <TextField
+                variant="outlined"
+                label="Phone Number"
+                id="phoneNumber"
+                type="text"
+                {...register("phoneNumber")}
+                fullWidth
+                error={Boolean(errors.phoneNumber)}
+                helperText={errors.phoneNumber?.message}
+              />
+
+              <TextField
+                variant="outlined"
+                id="password"
+                label="Password"
+                sx={{ my: 1, mb: 2 }}
+                error={Boolean(errors.password)}
+                helperText={errors.password?.message}
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        //       aria-label="toggle password visibility"
+                        onClick={togglePasswordVisibility}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth
+              />
+
+              <LoadingButton
+                loading={loading}
+                type="submit"
+                className="w-full bg-blue-500 text-white "
+                variant="contained"
+                sx={{
+                  backgroundColor: "#371373",
+                  py: isMobile ? 1 : 2,
+                  "&:hover": {
+                    backgroundColor: "#774ac0", // Set the hover background color
+                    borderColor: "#4C3B4D", // Optional: change the border color on hover
+                    color: "#FFFFFF", // Optional: change the text color on hover
+                  },
+                }}
               >
-                <TextField
-                  // variant="outlined"
-                  variant="outlined"
-                  label="User Name"
-                  id="userName"
-                  type="text"
-                  {...register("userName")}
-                  fullWidth
-                  error={Boolean(errors.email) || Boolean(firebaseError)}
-                  helperText={errors.email?.message || firebaseError}
-                />
-                <TextField
-                  // variant="outlined"
-                  variant="outlined"
-                  label="E-mail"
-                  id="email"
-                  type="email"
-                  {...register("email")}
-                  fullWidth
-                  error={Boolean(errors.email)}
-                  helperText={errors.email?.message}
-                />
+                Create Account
+              </LoadingButton>
+            </form>
 
-                <Autocomplete
-                  disablePortal
-                  id="country"
-                  options={["egypt", "combo"]}
-                  renderInput={(params) => (
-                    <TextField
-                      error={Boolean(errors.country)}
-                      helperText={errors.country?.message}
-                      {...params}
-                      {...register("country")}
-                      label="Country"
-                    />
-                  )}
-                />
-
-                <TextField
-                  variant="outlined"
-                  label="Phone Number"
-                  id="phoneNumber"
-                  type="text"
-                  {...register("phoneNumber")}
-                  fullWidth
-                  error={Boolean(errors.phoneNumber)}
-                  helperText={errors.phoneNumber?.message}
-                />
-
-                <TextField
-                  variant="outlined"
-                  id="password"
-                  label="Password"
-                  sx={{ my: 1, mb: 2 }}
-                  error={Boolean(errors.password)}
-                  helperText={errors.password?.message}
-                  type={showPassword ? "text" : "password"}
-                  {...register("password")}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          //       aria-label="toggle password visibility"
-                          onClick={togglePasswordVisibility}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                  fullWidth
-                />
-
-                <LoadingButton
-                  loading={loading}
-                  type="submit"
-                  className="w-full bg-blue-500 text-white "
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#371373",
-                    py: 2,
-                    "&:hover": {
-                      backgroundColor: "#774ac0", // Set the hover background color
-                      borderColor: "#4C3B4D", // Optional: change the border color on hover
-                      color: "#FFFFFF", // Optional: change the text color on hover
-                    },
-                  }}
-                >
-                  Create Account
-                </LoadingButton>
-              </form>
-
-              <div className="relative my-4">
-                <Divider
-                  className={"text-base	font-medium	"}
-                  sx={{
-                    "&::before, &::after": {
-                      borderColor: "#ddac61",
-                      borderWidth: "1px",
-                    },
-                  }}
-                >
-                  or
-                </Divider>
-              </div>
-              <NavLink
-                to={"/login"}
-                state={{ from: location?.state?.from }}
-                replace
+            <div className="relative my-4">
+              <Divider
+                className={"text-base	font-medium	"}
+                sx={{
+                  "&::before, &::after": {
+                    borderColor: "#ddac61",
+                    borderWidth: "1px",
+                  },
+                }}
               >
-                <Button
-                  fullWidth
-                  sx={{
-                    borderColor: "#991A8E",
-                    color: "#991A8E",
-                    py: 2,
-                    fontWeight: "bold",
-                    "&:hover": {
-                      backgroundColor: "#774ac0", // Set the hover background color
-                      borderColor: "#4C3B4D", // Optional: change the border color on hover
-                      color: "#FFFFFF", // Optional: change the text color on hover
-                    },
-                  }}
-                  variant="outlined"
-                >
-                  Log In
-                </Button>
-              </NavLink>
+                or
+              </Divider>
             </div>
+            <NavLink
+              to={"/login"}
+              state={{ from: location?.state?.from }}
+              replace
+            >
+              <Button
+                fullWidth
+                sx={{
+                  borderColor: "#991A8E",
+                  color: "#991A8E",
+                  py: isMobile ? 1 : 2,
+                  fontWeight: "bold",
+                  "&:hover": {
+                    backgroundColor: "#774ac0", // Set the hover background color
+                    borderColor: "#4C3B4D", // Optional: change the border color on hover
+                    color: "#FFFFFF", // Optional: change the text color on hover
+                  },
+                }}
+                variant="outlined"
+              >
+                Log In
+              </Button>
+            </NavLink>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
