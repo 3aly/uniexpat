@@ -4,11 +4,16 @@ import { ContentContainer, Tabs } from "@components/molecules";
 import { useResize } from "@hooks/useResize";
 import { getFreeServices } from "@utils/getFreeServices";
 import { useState } from "react";
+import BlogsBrief from "../BlogsBrief/BlogsBrief";
+import BlogsContainer from "../BlogsContainer/BlogsContainer";
+import { getBlogsCovers } from "@utils/getBlogsCovers";
 
 export default function FreeServices() {
   const content = getFreeServices();
+  const blogs = getBlogsCovers();
   const [activeTab, setActiveTab] = useState(0);
   const { isMobile } = useResize();
+  console.log(content[activeTab].id);
 
   return (
     <div
@@ -37,7 +42,15 @@ export default function FreeServices() {
           isMobile ? "p-4 mx-2 my-2" : "my-5  p-8 w-4/6 "
         } `}
       >
-        <ContentContainer {...{ ...content[activeTab] }} />
+        {content[activeTab].id > 2 ? (
+          <>
+            <BlogsContainer content={blogs} />
+          </>
+        ) : (
+          <>
+            <ContentContainer {...{ ...content[activeTab] }} />
+          </>
+        )}
       </div>
     </div>
   );

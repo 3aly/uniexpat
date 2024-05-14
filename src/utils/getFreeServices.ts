@@ -3,6 +3,7 @@ import { IMAGES } from "@assets/images";
 export const getFreeServices = () => {
   return [
     {
+      id: 1,
       image: IMAGES.academic,
       title: "Información Académica",
       paragraph:
@@ -17,6 +18,7 @@ export const getFreeServices = () => {
       swiped: true,
     },
     {
+      id: 2,
       image: IMAGES.information,
       title: "Información Legal",
       paragraph:
@@ -31,6 +33,8 @@ export const getFreeServices = () => {
       swiped: false,
     },
     {
+      id: 3,
+
       image: IMAGES.community,
       title: "Conoce a otros estudiantes y forma tu propia comunidad.",
       paragraph:
@@ -44,6 +48,8 @@ export const getFreeServices = () => {
       swiped: true,
     },
     {
+      id: 4,
+
       image: IMAGES.community,
       title: "Conoce a otros estudiantes y forma tu propia comunidad.",
       paragraph:

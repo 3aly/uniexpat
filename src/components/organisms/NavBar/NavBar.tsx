@@ -12,16 +12,30 @@ const Navbar = ({ className = "", isScrolled = false }) => {
   const { isMobile } = useResize();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const inHome = location.pathname === "/";
+  const { user } = useSelector((state: { user: { user: {} } }) => state?.user);
 
-  const links = [
-    { to: "home", label: "Home", mx: "mx-2 md:mx-5" },
-    { to: "services", label: "Services", mx: "mx-2 md:mx-5" },
-    { to: "about", label: "About", mx: "mx-2 md:mx-5" },
-    { to: "contact", label: "Contact", mx: "mx-2 md:mx-5" },
-  ];
-  const { user } = useSelector((state: RootState) => {
-    return state;
-  });
+  const links = inHome
+    ? [
+        { to: "home", label: "Home", mx: "mx-2 md:mx-5" },
+        {
+          to: "services",
+          label: "Services",
+          mx: "mx-2 md:mx-5",
+        },
+        { to: "about", label: "About", mx: "mx-2 md:mx-5" },
+        { to: "contact", label: "Contact", mx: "mx-2 md:mx-5" },
+      ]
+    : [
+        { to: "/", label: "Home", mx: "mx-2 md:mx-5" },
+        {
+          to: "/services",
+          label: "Services",
+          mx: "mx-2 md:mx-5",
+        },
+        { to: "/programs", label: "Programs", mx: "mx-2 md:mx-5" },
+        { to: "/blogs", label: "Blogs", mx: "mx-2 md:mx-5" },
+      ];
 
   return (
     <div
@@ -56,19 +70,32 @@ const Navbar = ({ className = "", isScrolled = false }) => {
               isMenuOpen ? "max-h-screen" : "max-h-0"
             } overflow-hidden md:static md:max-h-full md:flex md:w-auto`}
           >
-            {links.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`${link.mx} my-1 hover:text-purple-300 cursor-pointer transition duration-300`}
-                smooth={true}
-                duration={500}
-                activeClass="border-b-2 border-purple-100"
-                spy={true}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map((link) => {
+              return (
+                <>
+                  {inHome ? (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className={`${link.mx} my-1 hover:text-purple-300 cursor-pointer transition duration-300`}
+                      smooth={true}
+                      duration={500}
+                      activeClass="border-b-2 border-purple-100"
+                      spy={true}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <NavLink
+                      className={`${link.mx} my-1 hover:text-purple-300 cursor-pointer transition duration-300`}
+                      to={`${link.to}`}
+                    >
+                      {link.label}
+                    </NavLink>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
