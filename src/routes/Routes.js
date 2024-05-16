@@ -1,11 +1,10 @@
 import { Suspense, lazy } from "react";
 
-import { createBrowserRouter, useParams } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import { Box, CircularProgress } from "@mui/material";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./PrivateRoutes";
-import { Services } from "../pages";
 
 const LoginPage = lazy(() => import("../pages/Login/Login"));
 const RegisterPage = lazy(() => import("../pages/Register/Register"));
@@ -13,6 +12,7 @@ const LandingPage = lazy(() => import("../pages/LandingPage/LandingPage"));
 const ProgramsPage = lazy(() => import("../pages/Programs/Programs"));
 const ServicesPage = lazy(() => import("../pages/ServicesPage/ServicesPage"));
 const BlogsPage = lazy(() => import("../pages/Blogs/Blogs"));
+const CountryPage = lazy(() => import("../pages/Country/Country"));
 
 const fallBackSpinner = (
   <Box
@@ -37,6 +37,15 @@ const customRoutes = [
         element: (
           <Suspense fallback={fallBackSpinner}>
             <LoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        index: true,
+        path: "/country",
+        element: (
+          <Suspense fallback={fallBackSpinner}>
+            <CountryPage />
           </Suspense>
         ),
       },

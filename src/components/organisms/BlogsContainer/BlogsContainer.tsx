@@ -7,7 +7,7 @@ const BlogsContainer = ({ content }) => {
 
   return (
     <div
-      className={`flex text-start ${
+      className={`flex text-start w-full ${
         isMobile
           ? "flex-col m-2 gap-y-6 items-center"
           : "flex-row m-8 justify-between"
@@ -16,8 +16,8 @@ const BlogsContainer = ({ content }) => {
       {content.map((item) => (
         <NavLink to={`/blogs`} key={item.id}>
           <div
-            className={`rounded-lg shadow-2xl p-4 text-start flex flex-col justify-center items-start ${
-              isMobile ? "items-center m-2" : "mx-8"
+            className={`rounded-lg w-full p-4 text-start flex flex-col justify-center items-start ${
+              isMobile ? "items-center m-2" : ""
             }`}
           >
             <div className="flex flex-col relative self-center w-full">

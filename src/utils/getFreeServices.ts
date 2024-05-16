@@ -32,35 +32,35 @@ export const getFreeServices = () => {
       ],
       swiped: false,
     },
-    {
-      id: 3,
+    // {
+    //   id: 3,
 
-      image: IMAGES.community,
-      title: "Conoce a otros estudiantes y forma tu propia comunidad.",
-      paragraph:
-        "Únete a la comunidad de estudiantes registrados en nuestra plataforma! Conéctate con ellos y comienza a formar tu propia comunidad antes de llegar al país. Encuentra persoanas:",
-      button: "Explora más programas",
-      checkboxData: [
-        "De tú misma nacionalidad",
-        "Interesados en la misma universidad",
-        "Interesados en el mismo programa académico.",
-      ],
-      swiped: true,
-    },
-    {
-      id: 4,
+    //   image: IMAGES.community,
+    //   title: "Conoce a otros estudiantes y forma tu propia comunidad.",
+    //   paragraph:
+    //     "Únete a la comunidad de estudiantes registrados en nuestra plataforma! Conéctate con ellos y comienza a formar tu propia comunidad antes de llegar al país. Encuentra persoanas:",
+    //   button: "Explora más programas",
+    //   checkboxData: [
+    //     "De tú misma nacionalidad",
+    //     "Interesados en la misma universidad",
+    //     "Interesados en el mismo programa académico.",
+    //   ],
+    //   swiped: true,
+    // },
+    // {
+    //   id: 4,
 
-      image: IMAGES.community,
-      title: "Conoce a otros estudiantes y forma tu propia comunidad.",
-      paragraph:
-        "Únete a la comunidad de estudiantes registrados en nuestra plataforma! Conéctate con ellos y comienza a formar tu propia comunidad antes de llegar al país. Encuentra persoanas:",
-      button: "Explora más programas",
-      checkboxData: [
-        "De tú misma nacionalidad",
-        "Interesados en la misma universidad",
-        "Interesados en el mismo programa académico.",
-      ],
-      swiped: true,
-    },
+    //   image: IMAGES.community,
+    //   title: "Conoce a otros estudiantes y forma tu propia comunidad.",
+    //   paragraph:
+    //     "Únete a la comunidad de estudiantes registrados en nuestra plataforma! Conéctate con ellos y comienza a formar tu propia comunidad antes de llegar al país. Encuentra persoanas:",
+    //   button: "Explora más programas",
+    //   checkboxData: [
+    //     "De tú misma nacionalidad",
+    //     "Interesados en la misma universidad",
+    //     "Interesados en el mismo programa académico.",
+    //   ],
+    //   swiped: true,
+    // },
   ];
 };

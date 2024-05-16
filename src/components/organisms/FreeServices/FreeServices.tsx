@@ -7,13 +7,15 @@ import { useState } from "react";
 import BlogsBrief from "../BlogsBrief/BlogsBrief";
 import BlogsContainer from "../BlogsContainer/BlogsContainer";
 import { getBlogsCovers } from "@utils/getBlogsCovers";
+import { CountriesContainer } from "..";
+import { getCountries } from "@utils/getCountries";
 
 export default function FreeServices() {
   const content = getFreeServices();
   const blogs = getBlogsCovers();
+  const countries = getCountries();
   const [activeTab, setActiveTab] = useState(0);
   const { isMobile } = useResize();
-  console.log(content[activeTab].id);
 
   return (
     <div
@@ -42,9 +44,13 @@ export default function FreeServices() {
           isMobile ? "p-4 mx-2 my-2" : "my-5  p-8 w-4/6 "
         } `}
       >
-        {content[activeTab].id > 2 ? (
+        {activeTab === 2 ? (
           <>
             <BlogsContainer content={blogs} />
+          </>
+        ) : activeTab === 3 ? (
+          <>
+            <CountriesContainer content={countries} />
           </>
         ) : (
           <>
