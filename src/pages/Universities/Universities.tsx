@@ -1,10 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IMAGES } from "@assets/images";
 import { Pagination, SearchBar } from "@components/molecules";
-import { Filters, ProgramsDisplay } from "@components/organisms";
+import {
+  Filters,
+  ProgramsDisplay,
+  UniversitiesDisplay,
+} from "@components/organisms";
 import { useResize } from "@hooks/useResize";
 import TuneIcon from "@mui/icons-material/Tune";
-const Universities: React.FC = () => {
+const Programs: React.FC = () => {
   const [filters, setFilters] = useState<{
     area: string;
     discipline: string;
@@ -21,6 +25,7 @@ const Universities: React.FC = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   const toggleFilters = (): void => setIsFiltersVisible(!isFiltersVisible);
+
   // Function to handle outside click
   const handleClickOutside = (event: MouseEvent): void => {
     if (
@@ -46,26 +51,6 @@ const Universities: React.FC = () => {
         isMobile ? "mb-5 " : " mx-12 mb-4 "
       }`}
     >
-      <div
-        style={{
-          backgroundImage: `url(${IMAGES.programsBg})`,
-        }}
-        className={` text-white w-full flex flex-col  text-center justify-center  bg-cover bg-center ${
-          isMobile ? "h-60 rounded-lg my-2" : " my-4 h-96 rounded-3xl gap-y-4"
-        }`}
-      >
-        <p
-          className={`${
-            isMobile ? "text-lg font-extrabold" : "text-4xl font-extrabold		"
-          }`}
-        >
-          Encuentra tu programa universitario
-        </p>
-        <p className={`${isMobile ? "text-sm" : "text-xl	  font-medium		"}`}>
-          1,480,086 grados acádemicos o másters esperando por tí!
-        </p>
-      </div>
-
       <div className={`flex  ${isMobile ? "flex-col" : "flex-row"} `}>
         {isMobile && (
           <>
@@ -89,15 +74,15 @@ const Universities: React.FC = () => {
             </div>
           </>
         )}
-
-        {!isMobile && <Filters onFilterChange={setFilters} />}
+        <div className="w-1/3">
+          {!isMobile && <Filters onFilterChange={setFilters} />}
+        </div>
         <div
           className={`flex flex-col  items-center ${
-            isMobile ? "w-fit mx-4" : "w-3/4 "
+            isMobile ? "w-fit mx-4" : "mx-10 w-full "
           }`}
         >
-          <SearchBar onSearchChange={setSearchQuery} />
-          <ProgramsDisplay
+          <UniversitiesDisplay
             filters={filters}
             searchQuery={searchQuery}
             page={currentPage}
@@ -114,4 +99,4 @@ const Universities: React.FC = () => {
   );
 };
 
-export default Universities;
+export default Programs;

@@ -13,6 +13,9 @@ const ProgramsPage = lazy(() => import("../pages/Programs/Programs"));
 const ServicesPage = lazy(() => import("../pages/ServicesPage/ServicesPage"));
 const BlogsPage = lazy(() => import("../pages/Blogs/Blogs"));
 const CountryPage = lazy(() => import("../pages/Country/Country"));
+const UniversitiesPage = lazy(() =>
+  import("../pages/Universities/Universities")
+);
 
 const fallBackSpinner = (
   <Box
@@ -73,6 +76,15 @@ const customRoutes = [
         element: (
           <Suspense fallback={fallBackSpinner}>
             <BlogsPage />
+          </Suspense>
+        ),
+      },
+      {
+        index: true,
+        path: "/universities",
+        element: (
+          <Suspense fallback={fallBackSpinner}>
+            <UniversitiesPage />
           </Suspense>
         ),
       },

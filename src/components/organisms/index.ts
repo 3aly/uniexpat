@@ -18,3 +18,4 @@ export { default as Banco } from "./Banco/Banco";
 export { default as Salud } from "./Salud/Salud";
 export { default as Presupuesto } from "./Presupuesto/Presupuesto";
 export { default as Clima } from "./Clima/Clima";
+export { default as UniversitiesDisplay } from "./UniversitiesDisplay/UniversitiesDisplay";
