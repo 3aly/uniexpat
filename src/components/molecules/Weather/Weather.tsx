@@ -1,33 +1,44 @@
-// src/components/Weather.tsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { getWeatherIcon } from "@utils/getWeatherIcon";
+import { useResize } from "@hooks/useResize";
 
-interface WeatherData {
-  main: {
-    temp: number;
-    humidity: number;
-  };
-  weather: [
-    {
-      description: string;
-    }
-  ];
-  wind: {
-    speed: number;
+interface ForecastDay {
+  date: string;
+  day: {
+    maxtemp_c: number;
+    mintemp_c: number;
+    avgtemp_c: number;
+    daily_chance_of_rain: number;
+    avghumidity: number;
+    condition: {
+      text: string;
+      icon: string;
+    };
   };
 }
 
-const Weather: React.FC = () => {
+interface WeatherData {
+  forecast: {
+    forecastday: ForecastDay[];
+  };
+}
+
+interface WeatherProps {
+  city: string;
+}
+
+const Weather: React.FC<WeatherProps> = ({ city }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { isMobile } = useResize();
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const apiKey = "100cd2a96e5ae6c137bfb5d4c3b7c8e2";
-        const city = "Barcelona";
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const apiKey = "e7a4d8895dc949b4a50165618241705"; // Replace with your WeatherAPI key
+        const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`;
 
         const response = await axios.get<WeatherData>(url);
         setWeatherData(response.data);
@@ -39,18 +50,49 @@ const Weather: React.FC = () => {
     };
 
     fetchWeatherData();
-  }, []);
+  }, [city]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error fetching weather data: {error}</div>;
 
   return (
-    <div>
-      <h2>Current Weather in Barcelona</h2>
-      <p>Temperature: {weatherData?.main.temp} °C</p>
-      <p>Weather: {weatherData?.weather[0].description}</p>
-      <p>Humidity: {weatherData?.main.humidity} %</p>
-      <p>Wind Speed: {weatherData?.wind.speed} m/s</p>
+    <div className="flex flex-col w-full my-4 gap-5">
+      <div
+        className={`flex    ${
+          isMobile ? "flex-col" : "justify-around flex-row gap-4"
+        } `}
+      >
+        {weatherData?.forecast.forecastday.map((day, index) => (
+          <div
+            key={index}
+            className={`p-8 rounded-lg  shadow-xl  h-full text-left ${
+              isMobile ? "" : "w-1/5"
+            }`}
+          >
+            <img
+              src={getWeatherIcon(day.day.condition.text.toLowerCase())}
+              alt={day.day.condition.text}
+              className="h-56 w-56 mx-auto"
+            />
+            <div className="flex flex-row flex-1 justify-between">
+              <p className="text-xl font-bold">Date:</p>
+              <p className="text-lg">{day.date}</p>
+            </div>
+            <div className="flex flex-row flex-1 justify-between">
+              <p className="text-xl font-bold">Avg Temp:</p>
+              <p className="text-lg">{day.day.avgtemp_c} °C</p>
+            </div>
+            <div className="flex flex-row flex-1 justify-between">
+              <p className="text-xl font-bold">Humidity:</p>
+              <p className="text-lg">{day.day.avghumidity} %</p>
+            </div>
+            <div className="flex flex-row flex-1 justify-between">
+              <p className="text-xl font-bold">Rain:</p>
+              <p className="text-lg">{day.day.daily_chance_of_rain} %</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

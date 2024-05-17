@@ -11,3 +11,5 @@ export * from "./renderListItems";
 export * from "./getSalud";
 export * from "./parseListItems";
 export * from "./getBanco";
+export * from "./getPresupuesto";
+export * from "./getWeatherIcon";

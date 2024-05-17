@@ -1,16 +1,17 @@
-// src/CountryDetailsPage.js
 import React from "react";
 import { Tabs, Tab, Box, Button } from "@mui/material";
 import { useState } from "react";
-import { Map } from "@components/molecules";
+import { CustomCardList, Map, Weather } from "@components/molecules";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { NavLink } from "react-router-dom";
 import { IMAGES } from "@assets/images";
 import {
   Banco,
+  Clima,
   Empadronamiento,
   NIE,
+  Presupuesto,
   Salud,
   VisaEstudiantes,
 } from "@components/organisms";
@@ -19,6 +20,8 @@ import { getEmpadronamiento } from "@utils/getEmpadronamiento";
 import { getNIE } from "@utils/getNIE";
 import { getSalud } from "@utils/getSalud";
 import { getBanco } from "@utils/getBanco";
+import { useResize } from "@hooks/useResize";
+import { getPresupuesto } from "@utils/getPresupuesto";
 
 const images = [
   {
@@ -60,47 +63,56 @@ const Country = () => {
   const nie = getNIE(); // Get the content
   const salud = getSalud(); // Get the content
   const banco = getBanco(); // Get the content
-
+  const presupuesto = getPresupuesto(); // Get the content
+  const { isMobile } = useResize();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const renderImageItem = (item) => {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center ">
         <img
           src={item.original}
           alt={item.originalAlt}
-          style={{ height: "400px", width: "auto" }} // Set your desired height
+          style={{ height: isMobile ? "250px" : "400px", width: "auto" }} // Set your desired height
         />
       </div>
     );
   };
+
   return (
-    <div className="container mx-auto mt-8 ">
-      <div style={{ height: "40%", flex: 0.2 }}>
+    <div className=" mt-1 flex flex-col flex-1 justify-center ">
+      <div className={` ${isMobile ? "w-full" : "w-1/2"}`}>
         <ImageGallery
           items={images}
           renderItem={renderImageItem} // Pass the custom render function
-          thumbnailPosition="right"
+          thumbnailPosition={`${isMobile ? "bottom" : "right"}`}
           showPlayButton={false}
         />
       </div>
 
-      <div className="mt-8">
-        <h1 className="text-4xl font-bold mb-4">Barcelona</h1>
+      <div className="mt-4 mx-4">
+        <h1 className="text-2xl	ms-4 font-bold mb-4">Barcelona</h1>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
             onChange={handleChange}
             aria-label="country details tabs"
+            variant="scrollable"
+            scrollButtons="auto"
+            allowScrollButtonsMobile
           >
             {tabLabels.map((label, index) => (
               <Tab key={index} label={label} />
             ))}
           </Tabs>
         </Box>
-        <div className="mt-4">
-          {value === 0 && <div>Content for {tabLabels[0]}</div>}
+        <div className="mt-4 ">
+          {value === 0 && (
+            <div>
+              <Presupuesto content={presupuesto} />
+            </div>
+          )}
           {value === 1 && (
             <div>
               <VisaEstudiantes content={visaEstudiantes} />
@@ -130,7 +142,11 @@ const Country = () => {
               <Banco content={banco} />
             </div>
           )}
-          {value === 6 && <div>Content for {tabLabels[6]}</div>}
+          {value === 6 && (
+            <div>
+              <Clima city="Barcelona" />
+            </div>
+          )}
           {value === 7 && (
             <div>
               <Map />
@@ -147,6 +163,8 @@ const Country = () => {
             "&:hover": {
               bgcolor: "#e63e3e", // Change to your desired hover color
             },
+            m: 2,
+            mb: 5,
           }}
         >
           Necesitas nuestra ayuda

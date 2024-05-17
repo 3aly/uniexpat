@@ -9,3 +9,4 @@ export { default as HorizontalExpander } from "./HorizontalExpander/HorizontalEx
 export { default as CountryCard } from "./CountryCard/CountryCard";
 export { default as Map } from "./Map/Map";
 export { default as Weather } from "./Weather/Weather";
+export { default as CustomCardList } from "./CustomCardList/CustomCardList";

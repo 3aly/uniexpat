@@ -14,36 +14,30 @@ const CountryCard = ({
   return (
     <div
       style={{ borderRadius: 16 }}
-      className={`flex shadow-5xl   rounded-full	 justify-between  ${
+      className={`flex shadow-5xl items-center   rounded-full	 justify-between  ${
         isMobile ? "flex-col" : reverse ? "flex-row-reverse" : "flex-row"
       } bg-white shadow-md rounded-lg overflow-hidden`}
     >
-      <div className={`w-3/4 h-fit  ${isMobile ? "self-start" : "self-end"}`}>
-        <img
-          src={imageSrc}
-          alt={title}
-          className="object-cover h-full w-full"
-        />
+      <div className={` h-fit  ${isMobile ? "self-start" : "self-end w-2/4"}`}>
+        <img src={imageSrc} alt={title} className="object-cover " />
       </div>
-      <div className=" p-4 flex flex-col justify-between">
+      <div className=" p-4 flex flex-col justify-between gap-20 ">
         <div>
-          <p>como se vive en:</p>
+          <p className={"text-xs	font-bold	text-grey-600 "}>como se vive en:</p>
 
-          <h2 className="text-xl font-bold">{title}</h2>
-          <p className="text-gray-600">{subtitle}</p>
+          <h2 className="text-4xl	 font-extrabold	text-black-200">{title}</h2>
+          <p className="text-black-200 text-base	">{subtitle}</p>
         </div>
         <NavLink to={"/country"}>
           <Button
-            className=" self-start "
             sx={{
-              "&::before, &::after": {
-                borderColor: "#ddac61",
-                borderWidth: "1px",
-              },
               backgroundColor: "#371373",
-              color: "#fff",
-              paddingInline: 2,
+              // py: isMobile ? 1 : 2,
+              "&:hover": {
+                backgroundColor: "#5d0fdb", // Set the hover background color
+              },
             }}
+            variant="contained"
           >
             Entra
           </Button>

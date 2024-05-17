@@ -27,4 +27,11 @@ export const IMAGES = {
   barca3: require("./barca3.jpeg"),
   barca4: require("./barca4.jpeg"),
   barca5: require("./barca5.jpeg"),
+  house: require("./house.png"),
+  cart: require("./cart.png"),
+  beer: require("./beer.png"),
+  cash: require("./cash.png"),
+  sunny: require("./sunny.png"),
+  partially: require("./partially.png"),
+  rain: require("./rain.png"),
 };

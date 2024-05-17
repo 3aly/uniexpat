@@ -8,7 +8,7 @@ export const createLinks = (text) => {
           href={part}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 underline"
+          className="text-blue-500 underline break-words"
         >
           {part}
         </a>

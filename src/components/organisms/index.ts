@@ -16,3 +16,5 @@ export { default as Empadronamiento } from "./Empadronamiento/Empadronamiento";
 export { default as NIE } from "./NIE/NIE";
 export { default as Banco } from "./Banco/Banco";
 export { default as Salud } from "./Salud/Salud";
+export { default as Presupuesto } from "./Presupuesto/Presupuesto";
+export { default as Clima } from "./Clima/Clima";
