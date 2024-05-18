@@ -37,7 +37,7 @@ const UniversitiesDisplay = ({ filters, searchQuery, page }) => {
   return (
     <div className="w-full  flex flex-col gap-8">
       {currentItems.map((program) => (
-        <NavLink to={"/universities"}>
+        <NavLink to={"/university"}>
           <UniversitiesCard program={program} />
         </NavLink>
       ))}

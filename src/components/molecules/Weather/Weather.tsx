@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getWeatherIcon } from "@utils/getWeatherIcon";
 import { useResize } from "@hooks/useResize";
+import { CircularProgress } from "@mui/material";
 
 interface ForecastDay {
   date: string;
@@ -52,7 +53,12 @@ const Weather: React.FC<WeatherProps> = ({ city }) => {
     fetchWeatherData();
   }, [city]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center">
+        <CircularProgress color="secondary" />
+      </div>
+    );
   if (error) return <div>Error fetching weather data: {error}</div>;
 
   return (

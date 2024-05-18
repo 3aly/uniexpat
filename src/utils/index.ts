@@ -13,3 +13,4 @@ export * from "./parseListItems";
 export * from "./getBanco";
 export * from "./getPresupuesto";
 export * from "./getWeatherIcon";
+export * from "./getUniversity";

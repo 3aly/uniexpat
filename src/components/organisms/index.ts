@@ -19,3 +19,6 @@ export { default as Salud } from "./Salud/Salud";
 export { default as Presupuesto } from "./Presupuesto/Presupuesto";
 export { default as Clima } from "./Clima/Clima";
 export { default as UniversitiesDisplay } from "./UniversitiesDisplay/UniversitiesDisplay";
+export { default as Descripción } from "./Descripción/Descripción";
+export { default as Admission } from "./Admisiones/Admisiones";
+export { default as Becas } from "./Becas/Becas";

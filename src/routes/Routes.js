@@ -13,6 +13,7 @@ const ProgramsPage = lazy(() => import("../pages/Programs/Programs"));
 const ServicesPage = lazy(() => import("../pages/ServicesPage/ServicesPage"));
 const BlogsPage = lazy(() => import("../pages/Blogs/Blogs"));
 const CountryPage = lazy(() => import("../pages/Country/Country"));
+const UniversityPage = lazy(() => import("../pages/University/University"));
 const UniversitiesPage = lazy(() =>
   import("../pages/Universities/Universities")
 );
@@ -85,6 +86,15 @@ const customRoutes = [
         element: (
           <Suspense fallback={fallBackSpinner}>
             <UniversitiesPage />
+          </Suspense>
+        ),
+      },
+      {
+        index: true,
+        path: "/university",
+        element: (
+          <Suspense fallback={fallBackSpinner}>
+            <UniversityPage />
           </Suspense>
         ),
       },

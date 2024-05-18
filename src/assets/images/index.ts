@@ -34,4 +34,9 @@ export const IMAGES = {
   sunny: require("./sunny.png"),
   partially: require("./partially.png"),
   rain: require("./rain.png"),
+  esp1: require("./uni1.jpeg"),
+  esp2: require("./uni2.jpeg"),
+  esp3: require("./uni3.jpeg"),
+  esp4: require("./uni4.jpeg"),
+  esp5: require("./uni5.png"),
 };
