@@ -10,7 +10,7 @@ export default function BlogsBrief() {
   return (
     <div
       className={`flex  items-center tex-center justify-center  flex-col ${
-        isMobile ? "" : " h-screen  mt-12 "
+        isMobile ? "" : " h-fit mx-8  mt-12 "
       } `}
     >
       <div

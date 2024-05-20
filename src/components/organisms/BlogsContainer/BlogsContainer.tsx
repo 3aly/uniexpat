@@ -17,7 +17,7 @@ const BlogsContainer = ({ content }) => {
         <NavLink to={`/blogs`} key={item.id}>
           <div
             className={`rounded-lg w-full p-4 text-start flex flex-col justify-center items-start ${
-              isMobile ? "items-center m-2" : ""
+              isMobile ? "items-center " : ""
             }`}
           >
             <div className="flex flex-col relative self-center w-full">

@@ -9,7 +9,7 @@ const CustomCardList = ({ table }) => {
   return (
     <div
       className={` bg-white shadow-2xl rounded-lg flex flex-col flex-1 ${
-        isMobile ? "p-3" : "p-8"
+        isMobile ? "p-3" : "p-3"
       }`}
     >
       <div className="flex items-center mb-6 self-center">
@@ -17,7 +17,7 @@ const CustomCardList = ({ table }) => {
           src={table.header.image}
           alt="Header"
           className={` object-cover mr-4 ${
-            isMobile ? "h-15 w-12" : "h-20 w-23"
+            isMobile ? "h-10 w-12" : "h-20 w-23"
           }`}
         />
         <span className="font-extrabold	 text-lg text-purple-200">
@@ -29,14 +29,14 @@ const CustomCardList = ({ table }) => {
           <div
             key={index}
             className={`flex flex-row items-center  text-left justify-between bg-gray-100  rounded-lg shadow-sm   ${
-              isMobile ? "p-2 " : "p-4 gap-4"
+              isMobile ? "p-2 " : "p-2 gap-4"
             }`}
           >
             <img
               src={IMAGES.cash}
               alt={row.name}
               className={` object-cover  ${
-                isMobile ? "h-15 w-12 mr-2" : "mr-4 h-20 w-23"
+                isMobile ? "h-15 w-12 mr-2" : "mr-4 h-12 w-23"
               }`}
             />
             <div className="text-left flex-1">

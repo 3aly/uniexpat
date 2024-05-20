@@ -8,8 +8,8 @@ export default function AboutTwo() {
   console.log("isMobile", isMobile);
   return (
     <div
-      className={`flex  items-center tex-center justify-center  flex-col ${
-        isMobile ? "" : " h-screen  mb-12 mt-8 "
+      className={`flex gap-5 items-center tex-center justify-center  flex-col ${
+        isMobile ? "" : " h-fit "
       } `}
     >
       <div

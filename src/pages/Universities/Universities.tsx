@@ -1,11 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IMAGES } from "@assets/images";
 import { Pagination, SearchBar } from "@components/molecules";
-import {
-  Filters,
-  ProgramsDisplay,
-  UniversitiesDisplay,
-} from "@components/organisms";
+import { Filters, UniversitiesDisplay } from "@components/organisms";
 import { useResize } from "@hooks/useResize";
 import TuneIcon from "@mui/icons-material/Tune";
 const Programs: React.FC = () => {

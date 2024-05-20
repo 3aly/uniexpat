@@ -14,7 +14,7 @@ export default function AboutOne() {
   return (
     <div
       className={`flex  items-center tex-center justify-center  flex-col ${
-        isMobile ? "" : " h-screen  "
+        isMobile ? "" : " h-fit  "
       } `}
     >
       <div

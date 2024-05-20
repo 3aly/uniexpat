@@ -14,3 +14,5 @@ export * from "./getBanco";
 export * from "./getPresupuesto";
 export * from "./getWeatherIcon";
 export * from "./getUniversity";
+export * from "./getImages";
+export * from "./getUniversities";

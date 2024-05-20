@@ -19,8 +19,8 @@ export default function FreeServices() {
 
   return (
     <div
-      className={`  flex items-center  justify-center  flex-col ${
-        isMobile ? "my-5" : "h-screen my-12"
+      className={`  flex items-center gap-4  justify-center  flex-col ${
+        isMobile ? "my-5" : "h-fit "
       }`}
     >
       <div

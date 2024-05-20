@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CustomCardList, Map, Weather } from "@components/molecules";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { IMAGES } from "@assets/images";
 import {
   Admission,
@@ -27,34 +27,14 @@ import { useResize } from "@hooks/useResize";
 import { getPresupuesto } from "@utils/getPresupuesto";
 import { getUniversity } from "@utils/getUniversity";
 
-const images = [
-  {
-    original: IMAGES.esp1,
-    thumbnail: IMAGES.esp1,
-  },
-  {
-    original: IMAGES.esp2,
-    thumbnail: IMAGES.esp2,
-  },
-  {
-    original: IMAGES.esp3,
-    thumbnail: IMAGES.esp3,
-  },
-  {
-    original: IMAGES.esp4,
-    thumbnail: IMAGES.esp4,
-  },
-  {
-    original: IMAGES.esp5,
-    thumbnail: IMAGES.esp5,
-  },
-];
 const tabLabels = ["Descripción", "Proceso de Admisiones", "Becas"];
 
 const University = () => {
+  const { name } = useParams();
+
   const [value, setValue] = useState(0);
 
-  const university = getUniversity(); // Get the content
+  const university = getUniversity(name); // Get the content
   const { isMobile } = useResize();
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -75,7 +55,7 @@ const University = () => {
     <div className=" mt-1 flex flex-col flex-1 justify-center ">
       <div className={` ${isMobile ? "w-full" : "w-1/2"}`}>
         <ImageGallery
-          items={images}
+          items={university.images}
           renderItem={renderImageItem} // Pass the custom render function
           thumbnailPosition={`${isMobile ? "bottom" : "right"}`}
           showPlayButton={false}
@@ -85,7 +65,7 @@ const University = () => {
       <div className="mt-4 mx-4">
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-2xl	ms-4 font-bold mb-4">{university.name}</h1>
+            <h1 className="text-2xl	ms-4 font-bold mb-4">{name}</h1>
             <p className="text-sm	ms-4 text-black-200  mb-4">
               {university.title}
             </p>

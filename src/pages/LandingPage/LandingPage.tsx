@@ -9,13 +9,13 @@ import {
 import Services from "../Services/Services";
 const LandingPage: React.FC = () => {
   return (
-    <div className="flex flex-col gap-y-6">
+    <div className="flex flex-col gap-12">
       <Home />
-      <section className="flex flex-col gap-y-5" id="services">
+      <section className="flex flex-col gap-5" id="services">
         <FreeServices />
         <Services />
       </section>
-      <section className="flex flex-col mb-8" id="about">
+      <section className="flex gap-5 flex-col " id="about">
         <AboutOne />
         <AboutTwo />
       </section>

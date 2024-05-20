@@ -46,7 +46,7 @@ const customRoutes = [
       },
       {
         index: true,
-        path: "/country",
+        path: "/country/:title",
         element: (
           <Suspense fallback={fallBackSpinner}>
             <CountryPage />
@@ -91,7 +91,7 @@ const customRoutes = [
       },
       {
         index: true,
-        path: "/university",
+        path: "/university/:name",
         element: (
           <Suspense fallback={fallBackSpinner}>
             <UniversityPage />

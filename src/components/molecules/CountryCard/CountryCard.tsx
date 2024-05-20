@@ -14,21 +14,21 @@ const CountryCard = ({
   return (
     <div
       style={{ borderRadius: 16 }}
-      className={`flex shadow-5xl items-center   rounded-full	 justify-between  ${
+      className={`flex shadow-5xl  items-center   rounded-full	 justify-between  ${
         isMobile ? "flex-col" : reverse ? "flex-row-reverse" : "flex-row"
       } bg-white shadow-md rounded-lg overflow-hidden`}
     >
-      <div className={` h-fit  ${isMobile ? "self-start" : "self-end w-2/4"}`}>
-        <img src={imageSrc} alt={title} className="object-cover " />
+      <div className={` h-fit   ${isMobile ? "self-start" : "self-start"}`}>
+        <img src={imageSrc} alt={title} className="size-80	" />
       </div>
-      <div className=" p-4 flex flex-col justify-between gap-20 ">
+      <div className=" p-4 flex-1 flex flex-col justify-between gap-20 ">
         <div>
           <p className={"text-xs	font-bold	text-grey-600 "}>como se vive en:</p>
 
           <h2 className="text-4xl	 font-extrabold	text-black-200">{title}</h2>
           <p className="text-black-200 text-base	">{subtitle}</p>
         </div>
-        <NavLink to={"/country"}>
+        <NavLink to={`/country/${encodeURIComponent(title)}`}>
           <Button
             sx={{
               backgroundColor: "#371373",

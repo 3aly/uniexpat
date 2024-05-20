@@ -39,4 +39,7 @@ export const IMAGES = {
   esp3: require("./uni3.jpeg"),
   esp4: require("./uni4.jpeg"),
   esp5: require("./uni5.png"),
+  madrid1: require("./madrid1.jpg"),
+  madrid2: require("./madrid2.jpg"),
+  madrid3: require("./madrid3.jpg"),
 };

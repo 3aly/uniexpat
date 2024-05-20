@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CustomCardList, Map, Weather } from "@components/molecules";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { IMAGES } from "@assets/images";
 import {
   Banco,
@@ -22,29 +22,9 @@ import { getSalud } from "@utils/getSalud";
 import { getBanco } from "@utils/getBanco";
 import { useResize } from "@hooks/useResize";
 import { getPresupuesto } from "@utils/getPresupuesto";
+import { getImages } from "@utils/getImages";
 
-const images = [
-  {
-    original: IMAGES.barca1,
-    thumbnail: IMAGES.barca1,
-  },
-  {
-    original: IMAGES.barca2,
-    thumbnail: IMAGES.barca2,
-  },
-  {
-    original: IMAGES.barca3,
-    thumbnail: IMAGES.barca3,
-  },
-  {
-    original: IMAGES.barca4,
-    thumbnail: IMAGES.barca4,
-  },
-  {
-    original: IMAGES.barca5,
-    thumbnail: IMAGES.barca5,
-  },
-];
+// const images =
 const tabLabels = [
   "Presupuesto",
   "Visa Estudiantes",
@@ -57,13 +37,17 @@ const tabLabels = [
 ];
 
 const Country = () => {
+  const { title: city } = useParams();
+
   const [value, setValue] = useState(0);
-  const visaEstudiantes = getVisaEstudiantes();
-  const empadronamiento = getEmpadronamiento(); // Get the content
-  const nie = getNIE(); // Get the content
-  const salud = getSalud(); // Get the content
-  const banco = getBanco(); // Get the content
-  const presupuesto = getPresupuesto(); // Get the content
+
+  const presupuesto = getPresupuesto(city); // Get the content
+  const visaEstudiantes = getVisaEstudiantes(city);
+  const empadronamiento = getEmpadronamiento(city); // Get the content
+  const nie = getNIE(city); // Get the content
+  const salud = getSalud(city); // Get the content
+  const banco = getBanco(city); // Get the content
+  const images = getImages(city); // Get the content
   const { isMobile } = useResize();
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,7 +76,7 @@ const Country = () => {
       </div>
 
       <div className="mt-4 mx-4">
-        <h1 className="text-2xl	ms-4 font-bold mb-4">Barcelona</h1>
+        <h1 className="text-2xl	ms-4 font-bold mb-4">{city}</h1>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
@@ -144,12 +128,12 @@ const Country = () => {
           )}
           {value === 6 && (
             <div>
-              <Clima city="Barcelona" />
+              <Clima city={city} />
             </div>
           )}
           {value === 7 && (
             <div>
-              <Map />
+              <Map city={city ?? ""} />
             </div>
           )}
         </div>
