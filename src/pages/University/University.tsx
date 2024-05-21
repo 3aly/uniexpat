@@ -132,7 +132,7 @@ const University = () => {
             "&:hover": {
               bgcolor: "#e63e3e", // Change to your desired hover color
             },
-            m: 2,
+            m: 4,
             mb: 5,
           }}
         >

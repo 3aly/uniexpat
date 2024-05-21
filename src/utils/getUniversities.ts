@@ -13,7 +13,7 @@ export const getUniversities = () => {
     address: `${faker.address.streetAddress()} ${faker.address.cityName()}`,
     languages: faker.helpers
       .arrayElements(
-        ["Castellano", "Inglés"],
+        ["Castellano", "Inglés", "España"],
         faker.datatype.number({ min: 1, max: 2 })
       )
       .join(" · "),
@@ -34,6 +34,8 @@ export const getUniversities = () => {
     hotDeal: faker.datatype.boolean(),
     popular: faker.datatype.boolean(),
     imageUrl: faker.image.city(320, 240, true), // Generates a random city image URL
+
+    english: faker.datatype.boolean(),
   }));
   return universities;
 };

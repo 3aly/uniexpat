@@ -5,9 +5,7 @@ import { ProgramCard, UniversitiesCard } from "@components/molecules";
 import { NavLink } from "react-router-dom";
 import { getUniversities } from "@utils/getUniversities";
 
-const UniversitiesDisplay = ({ filters, searchQuery, page }) => {
-  const universities = getUniversities();
-
+const UniversitiesDisplay = ({ universities, filters, searchQuery, page }) => {
   const itemsPerPage = 8;
   const indexOfLastItem = page * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

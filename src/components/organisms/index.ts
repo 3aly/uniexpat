@@ -22,3 +22,5 @@ export { default as UniversitiesDisplay } from "./UniversitiesDisplay/Universiti
 export { default as Descripción } from "./Descripción/Descripción";
 export { default as Admission } from "./Admisiones/Admisiones";
 export { default as Becas } from "./Becas/Becas";
+export { default as UniversitiesFilter } from "./UniversitiesFilter/UniversitiesFilter";
+export { default as UniversitiesChecksFilter } from "./UniversitiesChecksFilter/UniversitiesChecksFilter";

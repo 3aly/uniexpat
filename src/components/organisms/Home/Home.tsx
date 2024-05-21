@@ -1,5 +1,6 @@
 import { IMAGES } from "@assets/images";
 import { useResize } from "@hooks/useResize";
+import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 export default function Home() {
   const { isMobile } = useResize();
@@ -40,17 +41,40 @@ export default function Home() {
           Nuestro equipo y nuestra tecnología serán el aliado perfecto para que
           puedas cumplir tu sueño de estudiar en España.
         </div>
-        <div className={`flex py-2 ${isMobile ? "flex-col" : ""} `}>
-          <button className="flex-1 bg-purple-200 text-white py-2 px-4 md:me-2 md:mb-0 mb-2">
+        <div className={`flex py-2 gap-2 ${isMobile ? "flex-col" : ""} `}>
+          <Button
+            sx={{
+              borderRadius: 0,
+              backgroundColor: "#371373",
+              py: 1,
+              "&:hover": {
+                backgroundColor: "#8454d1", // Set the hover background color
+              },
+            }}
+            variant="contained"
+            className="flex-1 bg-purple-200 text-white py-2 px-4 md:me-2 md:mb-0 mb-2"
+          >
             Necesitas nuestra ayuda!
-          </button>
-          <button
-            className={`flex-1 bg-transparent border border-purple-200 text-purple-600 py-2 px-4 md:ms-2 md:mb-0 mb-2 ${
+          </Button>
+          <Button
+            sx={{
+              borderRadius: 0,
+              backgroundColor: "#ef44440",
+              borderColor: "#4c3b4d",
+              py: 1,
+
+              color: isMobile ? "white" : "#4c3b4d",
+              "&:hover": {
+                borderColor: "#614763", // Set the hover background color
+              },
+            }}
+            className={`flex-1 bg-transparent border border-purple-200 text-purple-600  px-4 md:ms-2 md:mb-0 mb-2 ${
               isMobile ? "" : ""
             }`}
+            variant="outlined"
           >
             <NavLink to={"/programs"}>Explora más programas</NavLink>
-          </button>
+          </Button>
         </div>
       </div>
     </div>

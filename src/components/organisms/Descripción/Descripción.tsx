@@ -1,17 +1,19 @@
+import { useResize } from "@hooks/useResize";
 import { LinearProgress, linearProgressClasses } from "@mui/material";
 import { createLinks } from "@utils/createLinks";
 import { parseListItems } from "@utils/parseListItems";
 import { renderListItems } from "@utils/renderListItems";
 
 const Descripción = ({ content }) => {
+  const { isMobile } = useResize();
   return (
-    <div className="flex flex-row">
-      <div className="flex flex-col w-2/3">
+    <div className={`flex  ${isMobile ? "flex-col gap-4" : "flex-row"}`}>
+      <div className={`flex flex-col   ${isMobile ? "w-full" : "w-2/3"}`}>
         <h2 className="text-2xl	font-medium	mb-5">{content.title}</h2>
         <p>{content.paragraph}</p>
       </div>
 
-      <div className="flex flex-col w-1/3">
+      <div className={`flex flex-col   ${isMobile ? "w-full" : "w-1/3"}`}>
         <h1 className="text-2xl	text-purple-200	">{content?.rating}</h1>
         <div className="flex flex-col gap-4">
           {content?.ratings.map((rate) => (

@@ -1,5 +1,6 @@
 import { IMAGES } from "@assets/images";
 import { useResize } from "@hooks/useResize";
+import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 export default function Home() {
   const { isMobile } = useResize();
@@ -45,13 +46,13 @@ export default function Home() {
             Necesitas nuestra ayuda!
           </button>
           <NavLink to={"/programs"}>
-            <div
-              className={`flex-1 bg-transparent border border-purple-600 text-purple-600 py-2 px-4 md:ms-2 md:mb-0 mb-2 ${
-                isMobile ? "" : ""
-              }`}
+            <Button
+            // className={`flex-1 bg-transparent border border-purple-600 text-purple-600 py-2 px-4 md:ms-2 md:mb-0 mb-2 ${
+            //   isMobile ? "" : ""
+            // }`}
             >
               Explora más programas
-            </div>
+            </Button>
           </NavLink>
         </div>
       </div>

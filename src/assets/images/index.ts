@@ -19,7 +19,7 @@ export const IMAGES = {
   uni3: require("./university3.png"),
   uni4: require("./university4.png"),
   contactBg: require("./contactbg.png"),
-  programsBg: require("./programs.png"),
+  programsBg: require("./programs.jpeg"),
   barcelona: require("./barcelona.png"),
   madrid: require("./madrid.png"),
   barca1: require("./barca1.png"),

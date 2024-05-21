@@ -25,7 +25,7 @@ const Filters = ({ onFilterChange }) => {
   const { isMobile } = useResize();
 
   return (
-    <div className=" flex flex-col p-4 gap-y-2">
+    <div className=" flex flex-col p-4 mt-12 gap-y-2">
       {/* Area of Study Filter */}
       <HorizontalExpander title={"Filtro por área de estudio"}>
         {areaOptions.map((option, index) => (
